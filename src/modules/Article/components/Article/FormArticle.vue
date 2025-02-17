@@ -35,12 +35,16 @@ const submit = async () => {
   <form @submit.prevent="submit">
     <div class="grid lg:grid-cols-2 gap-4">
         <div class="block">     
-          <AppInput           
+          <!--AppInput           
             v-model="form.int_cod"
             label="Código del artículo"
             type="text"
             :error="v$.int_cod.$error ? v$.int_cod.$errors[0].$message : null"
-          />
+          /-->
+          <label class="block">Código del artículo</label>
+          <span class="showSpan">
+          {{ form.int_cod ? form.int_cod : "##########"}}
+        </span>
         </div>        
         <div class="block">     
           <AppInput           
@@ -101,3 +105,10 @@ const submit = async () => {
   </form>
 </div>
 </template>
+
+<style scoped>
+.showSpan {
+  @apply block p-2.5 border;
+}
+</style>
+
