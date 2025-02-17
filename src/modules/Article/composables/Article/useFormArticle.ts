@@ -99,9 +99,9 @@ export default (article: Article) => {
 
   const rules = computed(() => {
     return {
-      int_cod: {
-        required: helpers.withMessage("Campo requerido", required),
-      },
+      //int_cod: {
+        //required: helpers.withMessage("Campo requerido", required),
+      //},
       name: {
         required: helpers.withMessage("Campo requerido", required),
       },
