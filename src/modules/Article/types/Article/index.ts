@@ -3,7 +3,8 @@
 export type Article = {
   id?: string | number;
   int_cod?: string; 
-  name?: string; 
+  name?: string;
+  description?: string;
   price?: any; 
   stock_min?: any; 
   stock_max?: any; 
@@ -40,7 +41,8 @@ export type Rows = {
 
 export type ArticleRow = {
   int_cod?: string; 
-  name?: string; 
+  name?: string;
+  description?: string;
   price?: any; 
   stock_min?: any; 
   stock_max?: any; 

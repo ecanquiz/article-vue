@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { inject } from "vue";
 import useFormArticle from "../../composables/Article/useFormArticle";
+import type { Ref } from "vue";
 import type { Article } from "../../types/Article";
+
+const articleDescription:Ref<string, string> = inject('article-description');
 
 const props = defineProps<{
   article: Article
@@ -92,6 +96,12 @@ const submit = async () => {
             label="status"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           />
+        </div>
+        <div class="block">
+          <label class="block">Descripción</label>
+          <span class="showSpan">
+          {{ articleDescription }}
+        </span>
         </div>      
       </div>
     

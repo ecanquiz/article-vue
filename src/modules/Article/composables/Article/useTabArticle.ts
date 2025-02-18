@@ -1,15 +1,18 @@
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import ArticleService from "@/modules/Article/services/Article";
+import type { Ref } from "vue";
 import type { Article } from "../../types/Article";
 
 export default (articleId?: string) => {
-  const router = useRouter();    
+  const router = useRouter();
+
+  const articleDescription:Ref<string, string> = inject('article-description');
 
   const article: Article = reactive({
     int_cod: "", 
-    name: "", 
+    name: "",
     price: "", 
     stock_min: "", 
     stock_max: "", 
@@ -31,18 +34,19 @@ export default (articleId?: string) => {
       pending.value = true
       ArticleService.getArticle(articleId)
         .then((response) => { 
-          article.int_cod = response.data.data.int_cod 
-          article.name = response.data.data.name 
-          article.price = response.data.data.price 
-          article.stock_min = response.data.data.stock_min 
-          article.stock_max = response.data.data.stock_max 
-          article.status = response.data.data.status 
-          article.photo = response.data.data.photo 
-          article.id_user_insert = response.data.data.id_user_insert 
-          article.id_user_update = response.data.data.id_user_update 
+          article.int_cod = response.data.data.int_cod; 
+          article.name = response.data.data.name;
+          articleDescription.value = response.data.data.description;
+          article.price = response.data.data.price;
+          article.stock_min = response.data.data.stock_min;
+          article.stock_max = response.data.data.stock_max;
+          article.status = response.data.data.status;
+          article.photo = response.data.data.photo;
+          article.id_user_insert = response.data.data.id_user_insert;
+          article.id_user_update = response.data.data.id_user_update;
         })
         .catch((err) => {        
-          errors.value = getError(err)
+          errors.value = getError(err);
         })
         .finally(() => {
           pending.value = false;

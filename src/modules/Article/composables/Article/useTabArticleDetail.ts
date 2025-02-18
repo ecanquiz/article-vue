@@ -1,4 +1,4 @@
-import { computed, onMounted, reactive, ref, toRaw } from 'vue'
+import { computed, onMounted, reactive, ref, toRaw, inject } from 'vue'
 import useHttp from "@/composables/useHttp";
 import ArticleDetailService from "@/modules/Article/services/ArticleDetail";
 import type { Ref } from "vue";
@@ -17,11 +17,11 @@ export default (articleId: string) => {
     user_update_id: "", 
   })
   
+  const articleDescription:Ref<string, string> = inject('article-description');
   const article_details: Ref<ArticleDetail[]>  = ref([])
   const panelOpened = ref(false)
   const closeButtonOpened = computed(()=> panelOpened.value ? "Cerrar" : "Abrir")
   const closeClassOpened = computed(()=> panelOpened.value ? "btn-default" : "btn-primary")
-
   const {  
     errors,
     pending,
@@ -45,7 +45,10 @@ export default (articleId: string) => {
       return null 
     pending.value = true
     ArticleDetailService.getArticleDetails(articleId)
-      .then(res => article_details.value = res.data)
+      .then(res => {
+        article_details.value = res.data['article_details'];
+        articleDescription.value = res.data['article_description'];
+      })
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 
   }
@@ -57,7 +60,7 @@ export default (articleId: string) => {
       .then((response) => {
         panelOpened.value = false;
         getArticleDetails();
-        // response.data.article_description; TODO
+        articleDescription.value = response.data.article_description
         alert( response.data.message );
       })
       .catch((err) => {                
@@ -106,6 +109,7 @@ export default (articleId: string) => {
       return ArticleDetailService.deleteArticleDetail(articleDetailId)
         .then((response) => {        
           getArticleDetails()
+          articleDescription.value = response.data.article_description
         })
         .catch((err) => {                
           console.log( err.response.data )
