@@ -1,24 +1,21 @@
-import { onMounted, reactive, ref, computed } from 'vue'
+import { onMounted, reactive, computed } from 'vue'
+
 import useHttp from "@/composables/useHttp";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-import ArticleService from "../../services/Article"
-
+//import ArticleService from "../../services/Article"
 import type { Article } from "../../types/Article"
-
 // import { ascBubble } from "@/utils/helpers";
 
 export default (article: Article) => {
-  
-
   const form = reactive({
-    int_cod  : article.int_cod   ? article.int_cod   : '', 
-    name     : article.name      ? article.name      : '', 
-    price    : article.price     ? article.price     :  0, 
-    stock_min: article.stock_min ? article.stock_min : 1, 
-    stock_max: article.stock_max ? article.stock_max :  100, 
-    status   : article.status    ? article.status    : true, 
-    photo    : article.photo     ? article.photo     : 'abc'
+    int_cod    : article.int_cod    ? article.int_cod    : '', 
+    name       : article.name       ? article.name       : '', 
+    price      : article.price      ? article.price      :  0, 
+    stock_min  : article.stock_min  ? article.stock_min  : 1, 
+    stock_max  : article.stock_max  ? article.stock_max  :  100, 
+    status     : article.status     ? article.status     : true, 
+    photo      : article.photo      ? article.photo      : 'abc'
   })
 
   const {
@@ -29,27 +26,6 @@ export default (article: Article) => {
   } = useHttp()
 
   onMounted(() => {
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
     /*pending.value = true
     CategoryService.getCategoriesSelect()
       .then((response) => {
@@ -132,7 +108,7 @@ export default (article: Article) => {
   const v$ = useVuelidate(rules, form);
 
   return {
-      form,
+    form,
     errors,
     pending,
 

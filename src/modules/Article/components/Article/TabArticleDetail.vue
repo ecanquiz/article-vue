@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import {ref} from 'vue'
+  import { ref } from 'vue'
   import FormArticleDetail from './FormArticleDetail.vue'
   import TableArticleDetail from './TableArticleDetail.vue'
   import useTabArticleDetail from '../../composables/Article/useTabArticleDetail'
@@ -13,12 +13,10 @@
     closeClassOpened,  
     article_details,
     article_detail,
-  
-    //createArticleDetail,
-    //editArticleDetail,
+    
     getArticleDetails,
     removeArticleDetail,  
-    submitArticleDetail,
+    submitArticleDetail, // createArticleDetail, //editArticleDetail,
     panelToogleArticleDetail
   } = useTabArticleDetail(props.id)
   </script>
