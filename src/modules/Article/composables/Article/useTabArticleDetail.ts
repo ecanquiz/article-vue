@@ -55,9 +55,10 @@ export default (articleId: string) => {
     payload.forEach(pl => pl.article_id = articleId)
     return ArticleDetailService.registerArticleDetail(payload)
       .then((response) => {
-        panelOpened.value = false
-        getArticleDetails()    
-        alert( response.data.message )              
+        panelOpened.value = false;
+        getArticleDetails();
+        // response.data.article_description; TODO
+        alert( response.data.message );
       })
       .catch((err) => {                
         console.log( err.response.data )
