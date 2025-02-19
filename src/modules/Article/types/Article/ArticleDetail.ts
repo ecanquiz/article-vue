@@ -4,7 +4,7 @@ export type ArticleDetail = {
   article_id?: string;
   presentation_id?: string;  
   quantity?: string;
-  status?: string;
+  status?: '0' | '1';
   user_insert_id?: string;
   user_update_id?: string;
   category?: string;
