@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { toRaw, ref } from "vue"
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 const props = defineProps<{ article_details: ArticleDetail[] }>()
@@ -13,6 +12,7 @@ const removeArticleDetail =  (articleDetailId: string) => {
   emits("removeArticleDetail", articleDetailId)
 };
 
+const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
 </script>
 
 <template>
@@ -24,9 +24,9 @@ const removeArticleDetail =  (articleDetailId: string) => {
           <th class="px-6 py-3">Categoría</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Producto</th>
           <th class="px-6 py-3">Marca</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">presentation_id</th>
-          <th class="px-6 py-3 ">quantity</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">status</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">Empaque</th>
+          <th class="px-6 py-3 ">Cantidad</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>
           <th class="px-6 py-3 ">Acción(es)</th>
         </tr>
       </thead>
@@ -39,11 +39,11 @@ const removeArticleDetail =  (articleDetailId: string) => {
           <td class="px-6 py-3 bg-gray-50 bg-base-200" id="article_detail.presentation_id">              
             {{ article_detail.packing_deployed  }}
           </td>
-          <td class="px-6 py-3 ">
+          <td class="px-6 py-3 text-right">
             {{ article_detail.quantity }}
           </td>
           <td class="px-6 py-3 bg-gray-50 bg-base-200">
-            {{ article_detail.status }}
+            {{ status(article_detail.status) }}
           </td>  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">             
