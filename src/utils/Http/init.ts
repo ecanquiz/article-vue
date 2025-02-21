@@ -22,20 +22,11 @@ export default<Init> {
 }
 
 export const productInit: Init = {
-  baseURL: import.meta.env.VITE_APP_API_PRODUCT_URL, //process.env.VITE_APP_API_PRODUCT_URL,  
+  baseURL: import.meta.env.VITE_PRODUCT_API_URL, //process.env.VITE_API_PRODUCT_URL,  
   withCredentials: false,
   withXSRFToken: false,
-  handleError(error: AxiosError) {
-    const storeAuth = useAuthStore()
-    
-    if (error.response
-      && [401, 419].includes(error.response.status)    
-      && storeAuth.authUser 
-      && !storeAuth.guest
-    ) {
-      storeAuth.logout();
-    }
-    
-    return Promise.reject(error);
+  customHeaders: { 
+    //'Content-Type': 'application/json', 
+    'Authorization': `Bearer ${import.meta.env.VITE_PRODUCT_API_SHARED_TOKEN}`
   }
 }
