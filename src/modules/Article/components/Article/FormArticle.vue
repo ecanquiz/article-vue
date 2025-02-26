@@ -57,43 +57,12 @@ const submit = async () => {
             type="text"
             :error="v$.name.$error ? v$.name.$errors[0].$message : null"
           />
-        </div>
-        <div class="block">
-          <AppInput
-            label="Stock Mínimo"
-            v-model="form.stock_min"                     
-            type="number"
-            :error="v$.stock_min.$error ? v$.stock_min.$errors[0].$message : null"
-          />
-        </div>      
-        <div class="block">        
-          <AppInput
-            label="Stock Máximo"
-            v-model="form.stock_max"                     
-            type="number"
-            :error="v$.stock_max.$error ? v$.stock_max.$errors[0].$message : null"
-          />
-        </div>      
-        <div class="block"> 
-          <AppInput
-            label="Precio"
-            v-model="form.price"                     
-            type="text"
-            :error="v$.price.$error ? v$.price.$errors[0].$message : null"
-          />
-        </div>      
+        </div>        
         <div class="block">     
           <AppInput           
             v-model="form.photo"
             label="photo"
             type="text"
-            :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
-          />
-        </div>        
-        <div class="block">     
-          <AppCheckbox
-            v-model="form.status"
-            label="status"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           />
         </div>
@@ -102,7 +71,14 @@ const submit = async () => {
           <span class="showSpan">
           {{ articleDescription }}
         </span>
-        </div>      
+        </div>        
+        <div class="block">     
+          <AppCheckbox
+            v-model="form.status"
+            label="status"
+            :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
+          />
+        </div>        
       </div>
     
       <div class="mt-4 px-2 border-gray-100 flex justify-right space-x-2">

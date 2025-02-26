@@ -1,7 +1,7 @@
 <script setup lang="ts">
 //https://dev.to/razi91/vue-arrays-and-v-model-17e0
 // import { toRaw} from "vue"
-import { reactive, watch} from "vue"
+import { markRaw, reactive, watch} from "vue"
 import useTableGrid from "../../composables/Article/useTableGrid"
 import AppPaginationC from "@/components/AppPaginationC.vue";
 import IconCamera from "@/components/icons/menu/icon-products.vue"
@@ -39,7 +39,19 @@ const classTr = (index) => {
   return  `bg-base-${num}`
 }
 
-const selectPresentation =  (id: string, quantity: number=1 ) => {
+type Presentation = {
+  id: string;
+  bar_cod: string;
+  category: string;
+  mark: string;
+  packing_deployed: string;
+  photo_path: string;
+  product: string;
+  quantity: number;
+}
+
+const selectPresentation =  (id: string, quantity: number=1, presentation ) => {
+  console.log(presentation)
   emits("selectPresentation", { id , quantity })
   quantityPresentation.values[id] = quantity;
   selectedPresentation[id] = !selectedPresentation[id];
@@ -64,7 +76,7 @@ watch(props.selectedPresentations, (selectedPresentations) => {
   })
 }, { deep: true })
 
-const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${presentation.photo_path}`
+const imgPath = (presentation) => `${import.meta.env.VITE_PRODUCT_API_URL}/${presentation.photo_path}`
 </script>
 
 <template>  
@@ -85,7 +97,7 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
       
   <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">     
     <table id="id_tab_presentacion" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" width="100%">
-      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+      <thead class="text-base text-gray-700 capitalize dark:text-gray-400">
         <tr class="bg-base-100">
           <th class="px-4 py-1">Acción(es)</th>
           <th class="px-4 py-1">Imagen</th>    
@@ -93,13 +105,13 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
             <AppBtn
               class="bg-base-100 hover:text-gray-500"
               @click.prevent="setSort('presentations.bar_cod')">
-                Barcode
+                Código de barra
             </AppBtn>
           </th>      
           <th class="px-4 py-1">
             <AppBtn
               class="bg-base-100 hover:text-gray-500"
-              @click.prevent="setSort('categories.name')">
+              @click.prevent="setSort('family')">
               Categoría
             </AppBtn>
           </th>
@@ -118,7 +130,6 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
             </AppBtn>
           </th>
           <th class="px-4 py-1">Empaque</th>
-          <th class="px-4 py-1">Precio</th>
           <!--th class="px-4">Estatus</th-->
         </tr>
       </thead>
@@ -132,7 +143,7 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
                 type="checkbox"
                 v-model="selectedPresentation[presentation.id]"
                 :value="presentation.id"
-                @click="selectPresentation(presentation.id, 1)"
+                @click="selectPresentation(presentation.id, 1, presentation)"
               />
                         
               <AppBtn
@@ -155,11 +166,10 @@ const imgPath = (presentation) => `${import.meta.env.VITE_APP_API_URL}/${present
             />
           </td>
           <td class="px-4 py-1">{{presentation.bar_cod}}</td>
-          <td class="px-4 py-1 text-justify">{{presentation.category_name}}</td>
-          <td class="px-4 py-1" :id='presentation.packing'>{{presentation.product_name}}</td>          
-          <td class="px-4 py-1 text-justify">{{presentation.mark_name}}</td>
+          <td class="px-4 py-1 text-justify">{{presentation.category}}</td>
+          <td class="px-4 py-1" :id='presentation.packing'>{{presentation.product}}</td>          
+          <td class="px-4 py-1 text-justify">{{presentation.mark}}</td>
           <td class="px-4 py-1 text-justify">{{presentation.packing_deployed}}</td>
-          <td class="px-4 py-1 text-right">{{presentation.price}}</td>
           <!--td class="px-6 py-1">{{presentation.status}}</td-->          
         </tr>
       </tbody>

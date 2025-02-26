@@ -18,9 +18,9 @@ const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
 <template>
   <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
     <table id="id_tab_presentacion" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" width="100%">
-      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+      <thead class="text-base text-gray-700 capitalize dark:text-gray-400">
         <tr>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Bar_Cod</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200 normal-case">Código de Barra</th>
           <th class="px-6 py-3">Categoría</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Producto</th>
           <th class="px-6 py-3">Marca</th>
