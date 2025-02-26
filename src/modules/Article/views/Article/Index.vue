@@ -55,14 +55,8 @@ const {
                 <AppLink to="#" @click.prevent="setSort('name')">name</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('price')">price</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('stock_min')">stock_min</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('stock_max')">stock_max</AppLink>
-              </th>
+                <AppLink to="#" @click.prevent="setSort('description')">description</AppLink>
+              </th>            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('status')">status</AppLink>
               </th>
@@ -96,13 +90,7 @@ const {
               {{ row.name }}
             </td>
             <td class="">
-              {{ row.price }}
-            </td>
-            <td class="">
-              {{ row.stock_min }}
-            </td>
-            <td class="">
-              {{ row.stock_max }}
+              {{ row.description }}
             </td>
             <td class="">
               {{ row.status }}

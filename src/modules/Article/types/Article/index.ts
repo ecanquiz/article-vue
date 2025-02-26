@@ -5,9 +5,6 @@ export type Article = {
   int_cod?: string; 
   name?: string;
   description?: string;
-  price?: any; 
-  stock_min?: any; 
-  stock_max?: any; 
   status?: any; 
   photo?: string; 
   id_user_insert?: any; 
@@ -43,9 +40,6 @@ export type ArticleRow = {
   int_cod?: string; 
   name?: string;
   description?: string;
-  price?: any; 
-  stock_min?: any; 
-  stock_max?: any; 
   status?: any; 
   photo?: string; 
   id_user_insert?: any; 

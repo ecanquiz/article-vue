@@ -10,10 +10,7 @@ import type { Article } from "../../types/Article"
 export default (article: Article) => {
   const form = reactive({
     int_cod    : article.int_cod    ? article.int_cod    : '', 
-    name       : article.name       ? article.name       : '', 
-    price      : article.price      ? article.price      :  0, 
-    stock_min  : article.stock_min  ? article.stock_min  : 1, 
-    stock_max  : article.stock_max  ? article.stock_max  :  100, 
+    name       : article.name       ? article.name       : '',    
     status     : article.status     ? article.status     : true, 
     photo      : article.photo      ? article.photo      : 'abc'
   })
@@ -75,33 +72,15 @@ export default (article: Article) => {
 
   const rules = computed(() => {
     return {
-      //int_cod: {
-        //required: helpers.withMessage("Campo requerido", required),
-      //},
       name: {
         required: helpers.withMessage("Campo requerido", required),
-      },
-      price: {
-        required: helpers.withMessage("Campo requerido", required),
-      },
-      stock_min: {
-        required: helpers.withMessage("Campo requerido", required),
-      },
-      stock_max: {
-        required: helpers.withMessage("Campo requerido", required),
-      },
+      },      
       status: {
         required: helpers.withMessage("Campo requerido", required),
       },
       photo: {
         required: helpers.withMessage("Campo requerido", required),
       },
-     // id_user_insert: {
-     //   required: helpers.withMessage("Campo requerido", required),
-     // },
-     // id_user_update: {
-     //   required: helpers.withMessage("Campo requerido", required),
-     // },
     }
   })
 
