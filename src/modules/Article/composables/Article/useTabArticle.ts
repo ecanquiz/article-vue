@@ -13,9 +13,7 @@ export default (articleId?: string) => {
   const article: Article = reactive({
     int_cod: "", 
     name: "",
-    price: "", 
-    stock_min: "", 
-    stock_max: "", 
+    description: "",     
     status: "", 
     photo: "", 
     id_user_insert: "", 
@@ -37,9 +35,6 @@ export default (articleId?: string) => {
           article.int_cod = response.data.data.int_cod; 
           article.name = response.data.data.name;
           articleDescription.value = response.data.data.description;
-          article.price = response.data.data.price;
-          article.stock_min = response.data.data.stock_min;
-          article.stock_max = response.data.data.stock_max;
           article.status = response.data.data.status ? true : false;
           article.photo = response.data.data.photo;
           article.id_user_insert = response.data.data.id_user_insert;
