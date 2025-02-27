@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRaw, ref, nextTick } from "vue"
+import { toRaw, ref } from "vue"
 import useFormArticleDetail from "../../composables/Article/useFormArticleDetail";
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 import TableSearchArticleDetail from "./TableSearchArticleDetail.vue";
@@ -8,11 +8,7 @@ const props = defineProps<{
   article_detail: ArticleDetail
 }>()
 
-const {
-  form,
-
-  v$
-} = useFormArticleDetail(props.article_detail)
+const { form } = useFormArticleDetail(props.article_detail)
 
 const emits = defineEmits<{
   (e: 'submitArticleDetail', form: ArticleDetail[]): void
@@ -21,17 +17,10 @@ const emits = defineEmits<{
 const selectedPresentations = ref([])
 
 const submitArticleDetail = async () => {
-  // console.log(toRaw(selectedPresentations.value))
-  
-  if (!selectedPresentations.value)
-    alert('pelando bola')
-  else
-    emits("submitArticleDetail", toRaw(selectedPresentations.value) as unknown as ArticleDetail[]);
-  
-  /*const result = await v$.value.$validate();
-  if (result) {
-    emits("submitArticleDetail", toRaw(form));
-  }*/
+  const articleDetails: ArticleDetail[] = toRaw(selectedPresentations.value);
+  !articleDetails.length
+    ? alert('Debe seleccionar algún producto.')
+      : emits("submitArticleDetail", articleDetails);
 }
 
 const selectPresentation = (presentation) => {

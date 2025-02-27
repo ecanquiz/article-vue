@@ -12,8 +12,8 @@ type Params =  string | string[][] | Record<string, string> | URLSearchParams | 
 const props = defineProps<{ selectedPresentations: ArticleDetail[] }>()
 
 const emits = defineEmits<{
-  (e: 'selectPresentation', article_detailId: object): void
-  (e: 'qtyPresentation', article_detailId: object): void
+  (e: 'selectPresentation', articleDetail: object): void
+  (e: 'qtyPresentation', articleDetail: object): void
 }>()
 
 const selectedPresentation = reactive([])
@@ -51,8 +51,10 @@ type Presentation = {
 }
 
 const selectPresentation =  (id: string, quantity: number=1, presentation ) => {
-  console.log(presentation)
-  emits("selectPresentation", { id , quantity })
+  //emits("selectPresentation", { id , quantity })
+  delete presentation.status
+  emits("selectPresentation", { quantity , ...presentation })
+
   quantityPresentation.values[id] = quantity;
   selectedPresentation[id] = !selectedPresentation[id];
 }
@@ -70,7 +72,6 @@ const setQuantity = (presentationId): void => {
 }
 
 watch(props.selectedPresentations, (selectedPresentations) => {
-  // console.log('selectedPresentations', toRaw(selectedPresentations))
   selectedPresentations.forEach((sp)=> {
     quantityPresentation.values[sp.id] = sp.quantity
   })

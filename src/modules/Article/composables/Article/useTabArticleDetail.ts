@@ -97,7 +97,13 @@ export default (articleId: string) => {
     const articleDetailsSaved: ArticleDetail[] = article_details.value.map( ads => ({
       id: ads.presentation_id,
       quantity: ads.quantity,
-      article_id: ads.article_id.toString()
+      article_id: ads.article_id.toString(),
+      bar_cod: ads.bar_cod, 
+      category: ads.category,
+      mark: ads.mark,
+      packing_deployed: ads.category,
+      photo_path: ads.photo_path,
+      product: ads.product
     }))
 
     const newPayload: ArticleDetail[] = mergeArrays(toRaw(articleDetailsSaved), payload)

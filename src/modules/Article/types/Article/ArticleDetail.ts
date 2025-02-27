@@ -11,6 +11,7 @@ export type ArticleDetail = {
   product?: string;
   mark?:string;
   packing_deployed?: string;
+  photo_path?: string;
   _method?: 'PUT';
 }
 

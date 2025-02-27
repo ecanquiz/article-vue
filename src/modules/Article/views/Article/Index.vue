@@ -49,27 +49,20 @@ const {
                 <AppLink to="#" @click.prevent="setSort('id')">id</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('int_cod')">int_cod</AppLink>
+                <AppLink to="#" @click.prevent="setSort('int_cod')">Código interno}</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('name')">name</AppLink>
+                <AppLink to="#" @click.prevent="setSort('name')">Nombre</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('description')">description</AppLink>
+                <AppLink to="#" @click.prevent="setSort('description')">Descripción</AppLink>
               </th>            
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('status')">status</AppLink>
+                <AppLink to="#" @click.prevent="setSort('status')">Status</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('photo')">photo</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('id_user_insert')">id_user_insert</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('id_user_update')">id_user_update</AppLink>
-              </th>
-                                     
+                <AppLink to="#" @click.prevent="setSort('photo')">Photo</AppLink>
+              </th>                                     
             <th class="">Acción</th>
           </tr>
         </thead>
@@ -98,12 +91,6 @@ const {
             <td class="">
               {{ row.photo }}
             </td>
-            <td class="">
-              {{ row.id_user_insert }}
-            </td>
-            <td class="">
-              {{ row.id_user_update }}
-            </td> 
             <td class="">
               <div class="flex items-center space-x-1">                
                 <AppBtn

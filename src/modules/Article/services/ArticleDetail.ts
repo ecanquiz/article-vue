@@ -6,6 +6,7 @@ export const getArticleDetails = (articleId: string) => {
 }
 
 export const registerArticleDetail = (payload: ArticleDetail[]) => {
+  console.log('payload', payload)
   return Http.post(`/api/article_details`, payload);
 }
 
