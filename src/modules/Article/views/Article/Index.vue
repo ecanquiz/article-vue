@@ -44,12 +44,8 @@ const {
       <table class="table-data">
         <thead>
           <tr class="">
-            
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('id')">id</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('int_cod')">Código interno}</AppLink>
+                <AppLink to="#" @click.prevent="setSort('int_cod')">Código interno</AppLink>
               </th>
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('name')">Nombre</AppLink>
@@ -58,26 +54,23 @@ const {
                 <AppLink to="#" @click.prevent="setSort('description')">Descripción</AppLink>
               </th>            
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('status')">Status</AppLink>
+                <AppLink to="#" @click.prevent="setSort('status')">Estatus</AppLink>
               </th>
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('photo')">Photo</AppLink>
+                <AppLink to="#" @click.prevent="setSort('photo')">Foto</AppLink>
               </th>                                     
             <th class="">Acción</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in data.rows" :key="row.id" class="">
-             <td class="">
+            <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
                 :to="{ name: 'articleEdit', params: { id: row.id }}"
               >
-                {{ row.id }}
+                {{ row.int_cod }}
               </AppLink>
-            </td>
-            <td class="">
-              {{ row.int_cod }}
             </td>
             <td class="">
               {{ row.name }}
@@ -86,7 +79,7 @@ const {
               {{ row.description }}
             </td>
             <td class="">
-              {{ row.status }}
+              {{ row.status ? 'Activo' : 'Inactivo' }}
             </td>
             <td class="">
               {{ row.photo }}
