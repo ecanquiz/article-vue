@@ -12,7 +12,6 @@
     closeButtonOpened,
     closeClassOpened,  
     article_details,
-    article_detail,
     
     getArticleDetails,
     removeArticleDetail,  
@@ -38,7 +37,6 @@
             <FormArticleDetail
               v-if="panelOpened"
               class="bg-base-200 py-4 mt-2 rounded"
-              :article_detail="article_detail"
               @submitArticleDetail="submitArticleDetail"
             />
             <TableArticleDetail

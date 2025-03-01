@@ -1,26 +1,10 @@
-import { computed, onMounted, reactive, ref, toRaw, inject } from 'vue'
+import { computed, onMounted, ref, toRaw, inject } from 'vue'
 import useHttp from "@/composables/useHttp";
 import ArticleDetailService from "@/modules/Article/services/ArticleDetail";
 import type { Ref } from "vue";
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
-export default (articleId: string) => {
-
-  const article_detail: ArticleDetail = reactive({
-    id: "", 
-    bar_cod: "",
-    article_id: "", 
-    presentation_id: "",
-    category: "",
-    product: "",
-    mark: "",
-    packing_deployed: "",
-    quantity: "", 
-    status: "0", 
-    user_insert_id: "", 
-    user_update_id: "", 
-  })
-  
+export default (articleId: string) => {  
   const articleDescription:Ref<string, string> = inject('article-description');
   const article_details: Ref<ArticleDetail[]>  = ref([])
   const panelOpened = ref(false)
@@ -35,7 +19,6 @@ export default (articleId: string) => {
 
   onMounted(    
     () => {
-      article_detail.article_id = articleId
       getArticleDetails()
     }
   )
@@ -136,7 +119,6 @@ export default (articleId: string) => {
     closeButtonOpened,
     closeClassOpened,
     article_details,
-    article_detail,
 
     getArticleDetails,
     removeArticleDetail, 
