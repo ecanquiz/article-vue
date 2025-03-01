@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import useFormArticleDetail from "../../composables/Article/useFormArticleDetail";
-import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 import TableSearchArticleDetail from "./TableSearchArticleDetail.vue";
-
-const props = defineProps<{ 
-  article_detail: ArticleDetail
-}>()
-
-const { form } = useFormArticleDetail(props.article_detail)
+import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 const emits = defineEmits<{
-  (e: 'submitArticleDetail', form: ArticleDetail[]): void
+  (e: 'submitArticleDetail', articleDetails: ArticleDetail[]): void
 }>()
 
 const selectedPresentations = ref([])
