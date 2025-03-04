@@ -49,7 +49,7 @@ const submit = async () => {
             v-model="form.name"
             label="Nombre del artículo"
             type="text"
-            @keyup="form.name = form.name.toUpperCase()"
+            @blur="form.name = form.name.toUpperCase()"
             style="text-transform: uppercase;"
             :error="v$.name.$error ? v$.name.$errors[0].$message : null"
           />
