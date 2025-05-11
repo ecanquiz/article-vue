@@ -3,6 +3,7 @@ import { inject } from "vue";
 import useFormArticle from "../../composables/Article/useFormArticle";
 import type { Ref } from "vue";
 import type { Article } from "../../types/Article";
+import GalleryImages from "./GalleryImages.vue";
 
 const articleDescription:Ref<string, string> = inject('article-description');
 
@@ -58,9 +59,10 @@ const submit = async () => {
           <AppInput           
             v-model="form.photo"
             label="photo"
-            type="text"
+            type="hidden"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           />
+          <GalleryImages />
         </div>
         <div class="block">
           <label class="block">Descripción</label>
