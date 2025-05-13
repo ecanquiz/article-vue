@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+const props = defineProps<{
+  images: string[];
+}>()
+
 const previewImage = ref('')
 const images = ref([])
 
-images.value = [
+/*images.value = [
   'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190718150152/Java-tutorials-by-GeeksForGeeks.png',
   'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210713211702/System-Design-Tutorial.png',
   'https://media.geeksforgeeks.org/wp-content/uploads/20240304152903/python-tutorial-2.webp'
-]
+]*/
 
 const showPreview = (image) => {
   previewImage.value = image;
@@ -18,13 +22,14 @@ const closePreview = () => {
   previewImage.value = '';
 }
 
+//props.photos.map(p=> images.value.push(p));
 </script>
 
 <template>
   <div>
     <!--h1>Image Gallery App</h1-->
     <div class="image-container">
-      <img v-for="(image, index) in images" 
+      <img v-for="(image, index) in props.images" 
         :key="index"
         :src="image"
         alt="Image" 

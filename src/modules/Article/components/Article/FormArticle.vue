@@ -56,13 +56,14 @@ const submit = async () => {
           />
         </div>        
         <div class="block">     
-          <AppInput           
+          <!--AppInput           
             v-model="form.photo"
             label="photo"
             type="hidden"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
-          />
-          <GalleryImages />
+          /-->
+
+          <GalleryImages v-if="form && form.photos"  :images="form.photos"/>
         </div>
         <div class="block">
           <label class="block">Descripción</label>
@@ -74,7 +75,7 @@ const submit = async () => {
           <AppCheckbox
             v-model="form.status"
             label="status"
-            :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
+            :error="v$.photos.$error ? v$.photos.$errors[0].$message : null"
           />
         </div>        
       </div>
