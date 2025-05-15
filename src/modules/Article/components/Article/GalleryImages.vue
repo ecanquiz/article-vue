@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 const props = defineProps<{
   images: string[];
+  photoPaths: string[]
 }>()
 
 const previewImage = ref('')
@@ -15,7 +16,7 @@ const images = ref([])
 ]*/
 
 const showPreview = (image) => {
-  previewImage.value = image;
+  previewImage.value = `http://localhost:8002/${image}`;
 }
 
 const closePreview = () => {
@@ -29,9 +30,9 @@ const closePreview = () => {
   <div>
     <!--h1>Image Gallery App</h1-->
     <div class="image-container">
-      <img v-for="(image, index) in props.images" 
+      <img v-for="(image, index) in props.photoPaths" 
         :key="index"
-        :src="image"
+        :src="`http://localhost:8002/${image}`"
         alt="Image" 
         @click="showPreview(image)"
       >

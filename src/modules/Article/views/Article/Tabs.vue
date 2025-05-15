@@ -3,12 +3,20 @@ import { provide, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import TabArticle from '../../components/Article/TabArticle.vue'
 import TabArticleDetail from '../../components/Article/TabArticleDetail.vue'
+import type { Ref } from "vue";
+import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 const props = defineProps<{ id?: string }>()
 const router = useRouter();
+const articleDescription: Ref<string> = ref('');
+const photoPaths: Ref<string[]> = ref([])
+const updatePhotoPaths = (articleDetails: Ref<ArticleDetail[]> ) => 
+  photoPaths.value = articleDetails.value.map(
+    (articleDetail: ArticleDetail) => articleDetail.photo_path
+  );
 
-const articleDescription = ref('');
-provide('article-description', articleDescription )
+provide('article-description', articleDescription);
+provide('photo-paths', { photoPaths, updatePhotoPaths });
 </script>
 
 <template>

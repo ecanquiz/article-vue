@@ -5,7 +5,12 @@ import type { Ref } from "vue";
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 export default (articleId: string) => {  
-  const articleDescription:Ref<string, string> = inject('article-description');
+  const articleDescription:Ref<string> = inject('article-description');
+  const { photoPaths, updatePhotoPaths }: {
+    photoPaths: Ref<string>
+    updatePhotoPaths: (arra: Ref<ArticleDetail[]> )=> void
+  } = inject('photo-paths');
+
   const article_details: Ref<ArticleDetail[]>  = ref([])
   const panelOpened = ref(false)
   const closeButtonOpened = computed(()=> panelOpened.value ? "Cerrar" : "Abrir")
@@ -35,6 +40,7 @@ export default (articleId: string) => {
       .then(res => {
         article_details.value = res.data['article_details'];
         articleDescription.value = res.data['article_description'];
+        updatePhotoPaths(article_details)
       })
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 
