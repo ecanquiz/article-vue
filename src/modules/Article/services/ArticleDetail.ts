@@ -1,4 +1,4 @@
-import Http from "@/utils/Http";
+import Http from "@/core/utils/Http";
 import type { ArticleDetail } from "../types/Article/ArticleDetail";
 
 export const getArticleDetails = (articleId: string) => {  

@@ -6,7 +6,7 @@ import type { Article } from "../../types/Article";
 import GalleryImages from "./GalleryImages.vue";
 
 const articleDescription:Ref<string> = inject('article-description');
-const { photoPaths }: { photoPaths: Ref<string> } = inject('photo-paths');
+const { photoPaths }: { photoPaths: Ref<string[]> } = inject('photo-paths');
 
 const props = defineProps<{
   article: Article
@@ -82,7 +82,7 @@ const submit = async () => {
       </div>
     
       <div class="mt-4 px-2 border-gray-100 flex justify-right space-x-2">
-        <AppBtn
+        <AppButton
           type="submit"
           :text="pending ? 'Guardando...' : 'Guardar'"
           :isDisabled='pending'

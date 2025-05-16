@@ -1,9 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
 import useIndex from "../../composables/Article/useIndex";
-import AppPaginationB from "@/components/AppPaginationB.vue";
-import AppPageHeader from "@/components/AppPageHeader.vue"
-import AppBtn from "@/components/AppBtn.vue"
 
 const {
   errors,
@@ -86,18 +83,18 @@ const {
             </td>
             <td class="">
               <div class="flex items-center space-x-1">                
-                <AppBtn
+                <AppButton
                   class="btn btn-primary btn-xs"                    
                   @click="router.push({ path: '/articles/edit/'+row.id })"
                 >
                   Editar
-                </AppBtn>
-                <AppBtn
+                </AppButton>
+                <AppButton
                   @click="deleteRow(row.id)"                    
                   class="btn btn-danger btn-xs"                    
                 >
                   Eliminar
-                </AppBtn>
+                </AppButton>
               </div>
             </td>
           </tr>
@@ -108,7 +105,7 @@ const {
       </table>
     </div>
     <span v-if="Object.keys(errors).length > 0" class="text-red-500">{{ errors }}</span>
-    <AppPaginationB v-if="data.links" :links="data.links" />      
+    <AppPaginationView v-if="data.links" :links="data.links" />      
   </div>
 </div>
 </template>

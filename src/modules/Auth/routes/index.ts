@@ -1,27 +1,27 @@
-import auth from "@/middleware/auth"
-import guest from "@/middleware/guest"
-import admin from "@/middleware/admin"
+import auth from "@/core/middleware/auth"
+import guest from "@/core/middleware/guest"
+import admin from "@/core/middleware/admin"
 
 export default [{
     path: "/",
     name: "Home",     
     meta: { middleware: [guest], layout: "empty" },      
-    component: () => import("@/modules/Auth/views/Home.vue").then(m => m.default)
+    component: () => import("@/modules/Auth/views/Home/Index.vue").then(m => m.default)
 }, {
     path: "/login",
     name: "Login",
     meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/modules/Auth/views/Login.vue").then(m => m.default)
+    component: () => import("@/modules/Auth/views/Login/Index.vue").then(m => m.default)
 }, {
     path: "/register",
     name: "Register",    
     meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/modules/Auth/views/Register.vue").then(m => m.default)
+    component: () => import("@/modules/Auth/views/Register/Index.vue").then(m => m.default)
 }, {
     path: "/profile",
     name: "profile",
     meta: { middleware: [auth] },
-    component: () => import("@/modules/Auth/views/Profile.vue").then(m => m.default),
+    component: () => import("@/modules/Auth/views/Profile/Index.vue").then(m => m.default),
 }, {
     path: "/dashboard",
     name: "dashboard",

@@ -25,7 +25,7 @@
       <div class="form-group row">
         <div class="col-sm-12">
           <div class="grid justify-items-stretch">
-            <AppBtn 
+            <AppButton 
               v-if="props.id"
               class="btn p-8 justify-self-center"
               type="text"                 

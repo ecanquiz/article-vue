@@ -1,5 +1,5 @@
 import { computed, onMounted, ref, toRaw, inject } from 'vue'
-import useHttp from "@/composables/useHttp";
+import useHttp from "@/core/composables/useHttp";
 import ArticleDetailService from "@/modules/Article/services/ArticleDetail";
 import type { Ref } from "vue";
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
