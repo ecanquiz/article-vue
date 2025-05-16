@@ -1,6 +1,6 @@
 import { onMounted, reactive, inject } from 'vue'
 import { useRouter } from 'vue-router'
-import useHttp from "@/composables/useHttp";
+import useHttp from "@/core/composables/useHttp";
 import ArticleService from "@/modules/Article/services/Article";
 import type { Ref } from "vue";
 import type { Article } from "../../types/Article";

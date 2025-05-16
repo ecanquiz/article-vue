@@ -1,5 +1,5 @@
-import { Http as h } from "@/utils/Http";
-import { productInit } from "@/utils/Http/init";
+import { Http as h } from "@/core/utils/Http";
+import { productInit } from "@/core/utils/Http/init";
 import type { Presentation } from "../types/Presentation";
 
 const Http = new h( productInit );

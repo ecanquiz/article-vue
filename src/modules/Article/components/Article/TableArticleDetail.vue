@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconCamera from "@/components/icons/IconCamera.vue"
+import IconCamera from "@/core/components/icons/IconCamera.vue"
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 const props = defineProps<{ article_details: ArticleDetail[] }>()
@@ -63,12 +63,12 @@ const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${a
           </td>   
           <td class="px-6 py-3 bg-gray-50 bg-base-200">
             <div class="flex items-center space-x-1">             
-              <AppBtn
+              <AppButton
                 @click="removeArticleDetail(article_detail.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar
-              </AppBtn>
+              </AppButton>
             </div>
           </td>
         </tr>

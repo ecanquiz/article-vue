@@ -3,8 +3,7 @@
 // import { toRaw} from "vue"
 import { markRaw, reactive, watch} from "vue"
 import useTableGrid from "../../composables/Article/useTableGrid"
-import AppPaginationC from "@/components/AppPaginationC.vue";
-import IconCamera from "@/components/icons/menu/icon-products.vue"
+import IconCamera from "@/core/components/icons/menu/icon-products.vue"
 import type { ArticleDetail } from "../../types/Article/ArticleDetail";
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
@@ -103,32 +102,32 @@ const imgPath = (presentation) => `${import.meta.env.VITE_PRODUCT_API_URL}/${pre
           <th class="px-4 py-1">Acción(es)</th>
           <th class="px-4 py-1">Imagen</th>    
           <th class="px-4 py-1">
-            <AppBtn
+            <AppButton
               class="bg-base-100 hover:text-gray-500"
               @click.prevent="setSort('presentations.bar_cod')">
                 Código de barra
-            </AppBtn>
+            </AppButton>
           </th>      
           <th class="px-4 py-1">
-            <AppBtn
+            <AppButton
               class="bg-base-100 hover:text-gray-500"
               @click.prevent="setSort('family')">
               Categoría
-            </AppBtn>
+            </AppButton>
           </th>
           <th class="px-4 py-1">
-            <AppBtn
+            <AppButton
               class="bg-base-100 hover:text-gray-500"
               @click.prevent="setSort('products.name')">
                 Producto
-            </AppBtn>
+            </AppButton>
           </th>
           <th class="px-4 py-1">
-            <AppBtn
+            <AppButton
               class="bg-base-100 hover:text-gray-500"
               @click.prevent="setSort('marks.name')">
                 Marca
-            </AppBtn>
+            </AppButton>
           </th>
           <th class="px-4 py-1">Empaque</th>
           <!--th class="px-4">Estatus</th-->
@@ -147,12 +146,12 @@ const imgPath = (presentation) => `${import.meta.env.VITE_PRODUCT_API_URL}/${pre
                 @click="selectPresentation(presentation.id, 1, presentation)"
               />
                         
-              <AppBtn
+              <AppButton
                 v-show="selectedPresentation[presentation.id]"
                 @click="setQuantity(presentation.id)"
                 type="button"
                 class="btn btn-primary btn-xs"
-              >ModQty|{{ quantityPresentation.values[presentation.id]}}</AppBtn>
+              >ModQty|{{ quantityPresentation.values[presentation.id]}}</AppButton>
             </div>
           </td>
           <td class="px-4 py-1">
@@ -176,7 +175,7 @@ const imgPath = (presentation) => `${import.meta.env.VITE_PRODUCT_API_URL}/${pre
       </tbody>
     </table>
   </div>
-  <AppPaginationC
+  <AppPaginationComponent
     v-if="data.links"
     :links="data.links"
     @getSearch="getSearch"

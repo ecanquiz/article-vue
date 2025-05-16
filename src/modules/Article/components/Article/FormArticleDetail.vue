@@ -40,7 +40,7 @@ const qtyPresentation = (presentation) => {
     /> 
     <form @submit.prevent="submitArticleDetail">
       <div class="block flex justify-center mt-4">
-        <AppBtn
+        <AppButton
           type="submit"                 
           data-testid="submit-btn"
           class="btn btn-primary"
