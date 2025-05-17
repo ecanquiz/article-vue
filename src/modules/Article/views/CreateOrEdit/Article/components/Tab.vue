@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import useTabArticle from "../../composables/Article/useTabArticle";
-import FormArticle from './FormArticle.vue';
+import FormArticle from './Form.vue';
+import useTabArticle from "../composables/useTab";
 
 const props = defineProps<{ id?: string }>()
 

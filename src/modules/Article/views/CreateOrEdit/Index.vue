@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { provide, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import TabArticle from '../../components/Article/TabArticle.vue'
-import TabArticleDetail from '../../components/Article/TabArticleDetail.vue'
+import ArticleTab from './Article/components/Tab.vue'
+import ArticleDetailTab from './ArticleDetail/components/Tab.vue'
 import type { Ref } from "vue";
-import type { ArticleDetail } from "../../types/Article/ArticleDetail";
+import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 const props = defineProps<{ id?: string }>()
 const router = useRouter();
@@ -32,8 +32,8 @@ provide('photo-paths', { photoPaths, updatePhotoPaths });
   </div>
 
   <div class="myPanel">
-    <TabArticle :id="props.id"/>
-    <TabArticleDetail :id="props.id"/>
+    <ArticleTab :id="props.id"/>
+    <ArticleDetailTab :id="props.id"/>
   </div>
 </div>
 </template>

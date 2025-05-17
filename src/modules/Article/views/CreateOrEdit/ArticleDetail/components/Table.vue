@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconCamera from "@/core/components/icons/IconCamera.vue"
-import type { ArticleDetail } from "../../types/Article/ArticleDetail";
+import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 const props = defineProps<{ article_details: ArticleDetail[] }>()
 

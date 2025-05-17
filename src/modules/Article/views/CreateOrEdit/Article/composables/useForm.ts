@@ -3,8 +3,7 @@ import { onMounted, reactive, computed } from 'vue'
 import useHttp from "@/core/composables/useHttp";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
-//import ArticleService from "../../services/Article"
-import type { Article } from "../../types/Article"
+import type { Article } from "@/modules/Article/types/Article"
 // import { ascBubble } from "@/utils/helpers";
 
 export default (article: Article) => {

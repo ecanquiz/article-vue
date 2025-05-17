@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import FormArticleDetail from './FormArticleDetail.vue'
-  import TableArticleDetail from './TableArticleDetail.vue'
-  import useTabArticleDetail from '../../composables/Article/useTabArticleDetail'
+  import FormArticleDetail from './Form.vue'
+  import TableArticleDetail from './Table.vue'
+  import useTabArticleDetail from '../composables/useTab'
+  
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()

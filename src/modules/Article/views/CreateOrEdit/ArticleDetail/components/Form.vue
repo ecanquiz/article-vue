@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import TableSearchArticleDetail from "./TableSearchArticleDetail.vue";
-import type { ArticleDetail } from "../../types/Article/ArticleDetail";
+import TableSearchArticleDetail from "./TableSearch.vue";
+import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 const emits = defineEmits<{
   (e: 'submitArticleDetail', articleDetails: ArticleDetail[]): void
