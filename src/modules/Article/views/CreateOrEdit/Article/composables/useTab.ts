@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import useHttp from "@/core/composables/useHttp";
 import ArticleService from "@/modules/Article/services/Article";
 import type { Ref } from "vue";
-import type { Article } from "../../types/Article";
+import type { Article } from "@/modules/Article/types/Article"
 
 export default (articleId?: string) => {
   const router = useRouter();

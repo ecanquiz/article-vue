@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import useFormArticle from "../../composables/Article/useFormArticle";
-import type { Ref } from "vue";
-import type { Article } from "../../types/Article";
 import GalleryImages from "./GalleryImages.vue";
+import useFormArticle from "../composables/useForm"
+import type { Ref } from "vue";
+import type { Article } from "@/modules/Article/types/Article";
 
 const articleDescription:Ref<string> = inject('article-description');
 const { photoPaths }: { photoPaths: Ref<string[]> } = inject('photo-paths');

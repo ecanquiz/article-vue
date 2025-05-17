@@ -2,9 +2,9 @@
 //https://dev.to/razi91/vue-arrays-and-v-model-17e0
 // import { toRaw} from "vue"
 import { markRaw, reactive, watch} from "vue"
-import useTableGrid from "../../composables/Article/useTableGrid"
+import useTableGrid from "../composables/useTableGrid"
 import IconCamera from "@/core/components/icons/menu/icon-products.vue"
-import type { ArticleDetail } from "../../types/Article/ArticleDetail";
+import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
