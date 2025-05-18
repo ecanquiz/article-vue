@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import GalleryImages from "./GalleryImages.vue";
+import GalleryImages from "./GalleryImages/Index.vue";
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
@@ -63,8 +63,11 @@ const submit = async () => {
             type="hidden"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           /-->
-
-          <GalleryImages v-if="form && form.photos"  :images="form.photos" :photoPaths="photoPaths"/>
+          <GalleryImages
+            v-if="form && form.photos"
+            :images="form.photos"
+            :photoPaths="photoPaths"
+          />
         </div>
         <div class="block">
           <label class="block">Descripción</label>
