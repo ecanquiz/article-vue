@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import ModalShowPreview from './ModalShowPreview.vue';
 
 const startOfImagePath: string = import.meta.env.VITE_PRODUCT_API_URL
@@ -17,6 +17,12 @@ const showPreview = (image: string) => {
 const closePreview = () => {
   previewImage.value = '';
 }
+
+watch(
+  ()=> props.photoPaths[0],
+  newValue => { showPreview(newValue) },
+  { once: true }
+)
 </script>
 
 <template>
