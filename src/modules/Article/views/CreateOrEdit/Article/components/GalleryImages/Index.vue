@@ -28,6 +28,11 @@ watch(
 <template>
   <div>
     <div class="image-container">
+      <ModalShowPreview
+        v-if="previewImage"
+        :previewImage="previewImage"
+        @closePreview="closePreview"
+      />
       <img v-for="(image, index) in props.photoPaths" 
         :key="index"
         :src="`${startOfImagePath}/${image}`"
@@ -35,23 +40,19 @@ watch(
         @click="showPreview(image)"
       >
     </div>
-    <ModalShowPreview
-      v-if="previewImage"
-      :previewImage="previewImage"
-      @closePreview="closePreview"
-    />
+
   </div>
 </template>
 
-<style>
+<style scoped>
   .image-container {
     display: flex;
     flex-wrap: wrap;
   }
 
   .image-container img {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     margin: 10px;
     cursor: pointer;
   }
