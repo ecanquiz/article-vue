@@ -27,23 +27,19 @@ const closePreview = () => emit("closePreview");
 
 <style scoped>
   .modal {
-    /*display: block;
-    position: fixed;
-    z-index: 1000;*/
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    /*background-color: rgba(0, 0, 0, 0.8);*/
-    background-color: rgba(0, 0, 0, 0);
-
+    background-color: transparent;
+    border: solid;
+    border-color: grey;
+    border-width: 1px;
+    padding: 10px;
   }
 
   .modal img {
     margin: auto;
     display: block;
-    max-width: 50%;
-    max-height: 50%;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>
