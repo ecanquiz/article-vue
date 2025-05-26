@@ -22,6 +22,7 @@ const closePreview = () => emit("closePreview");
       &times;
     </span-->
     <img :src="previewImage" alt="Preview">
+
   </div>
 </template>
 
@@ -31,8 +32,8 @@ const closePreview = () => emit("closePreview");
     top: 0;
     background-color: transparent;
     border: solid;
-    border-color: grey;
-    border-width: 1px;
+    border-color: rgb(189, 188, 188);
+    border-width: 1.5px;
     padding: 10px;
   }
 
