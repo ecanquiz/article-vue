@@ -63,6 +63,7 @@ const submit = async () => {
             type="hidden"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           /-->
+          <label class="block">Imágenes</label>
           <GalleryImages
             v-if="form && form.photos"
             :images="form.photos"

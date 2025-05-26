@@ -31,19 +31,14 @@ watch(
 </script>
 
 <template>
-  <div>
-
-
-
-
+  <div class="">
     <ModalShowPreview
       v-if="previewImage"
       :previewImage="previewImage"
       @closePreview="closePreview"
     />
     <div class="image-container">
-                  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-
+      <!--a class="prev" onclick="plusSlides(-1)">&#10094;</a-->
       <div
         :class="props.photoPaths[index] === selectImage ? 'image-selected' : 'image-unselected'"
         v-for="(image, index)  in props.photoPaths"
@@ -54,10 +49,8 @@ watch(
           alt="Image" 
           @click="showPreview(image)"
         />
-
       </div>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
+      <!--a class="next" onclick="plusSlides(1)">&#10095;</a-->
     </div>
   </div>
 </template>
@@ -79,7 +72,6 @@ watch(
     opacity: 1;
     background-color: grey;
     margin: 5px;
-
   }
 
   .image-unselected {
@@ -104,30 +96,22 @@ watch(
     cursor: pointer;
   }
 
-    /* Next & previous buttons */
-.prev, .next {
+      /* Next & previous buttons */
+/*.prev, .next {
+  top: -200;
   cursor: pointer;
-  position: absolute;
-  top: 50%;
+  position: relative;
   width: auto;
-  margin-top: -22px;
+  margin: auto;
   padding: 16px;
-  color: black;
-  font-weight: bold;
-  font-size: 18px;
+  color: black;  
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px;
   user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
+}*/
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
+/*.prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
-}
+}*/
 </style>
