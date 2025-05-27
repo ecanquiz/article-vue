@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { provide, ref } from 'vue'
+import { provide } from 'vue'
 import { useRouter } from 'vue-router'
+import useIndex from './useIndex'
 import ArticleTab from './Article/components/Tab.vue'
 import ArticleDetailTab from './ArticleDetail/components/Tab.vue'
-import type { Ref } from "vue";
-import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 const props = defineProps<{ id?: string }>()
 const router = useRouter();
-const articleDescription: Ref<string> = ref('');
-const photoPaths: Ref<string[]> = ref([])
-const updatePhotoPaths = (articleDetails: Ref<ArticleDetail[]> ) => 
-  photoPaths.value = articleDetails.value.map(
-    (articleDetail: ArticleDetail) => articleDetail.photo_path
-  );
+
+const {
+    articleDescription,
+    photoPaths,
+
+    updatePhotoPaths   
+  } = useIndex()
 
 provide('article-description', articleDescription);
 provide('photo-paths', { photoPaths, updatePhotoPaths });
