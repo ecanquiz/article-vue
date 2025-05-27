@@ -16,6 +16,15 @@ const removeArticleDetail =  (articleDetailId: string) => {
 const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
 
 const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${article_detail.photo_path}`
+
+const addImg = (photoPath: string) => {
+  alert(photoPath)
+}
+
+const addImgs = () => {
+  alert(props.article_details.map(articleDetail => articleDetail.photo_path))
+}
+
 </script>
 
 <template>
@@ -30,7 +39,19 @@ const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${a
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Empaque</th>
           <th class="px-6 py-3 ">Cantidad</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>
-          <th class="px-6 py-3 ">Imagen</th>
+          <th class="px-6 py-3 ">
+            
+            <div class="flex">
+              <p class="mt-1">Imagen</p>
+              <AppButton
+                @click="addImgs()"
+                class="btn btn-xs ml-1 text-blue-500 hover:text-blue-700"
+              >
+                Adds
+              </AppButton>
+            </div>
+
+          </th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
 
         </tr>
@@ -50,19 +71,28 @@ const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${a
           <td class="px-6 py-3 bg-gray-50 bg-base-200">
             {{ status(article_detail.status) }}
           </td>
-          <td class="px-6 py-3">           
-            <img
-              v-if="article_detail.photo_path"
-              class="m-auto w-10"
-              :src=imgPath(article_detail)
-            />
+          <td class="px-6 py-3">
+            <div class="flex" v-if="article_detail.photo_path">
+               <img              
+                 class="m-auto w-10"
+                :src=imgPath(article_detail)
+              />
+              <AppButton
+                @click="addImg(article_detail.photo_path)"
+                class="btn btn-xs ml-1 text-blue-500 hover:text-blue-700"              
+              >
+                Add
+              </AppButton>
+            </div>          
+            
             <IconCamera
               v-else
               class="w-7 h-7 m-auto fill-current"              
             />
+                                   
           </td>   
           <td class="px-6 py-3 bg-gray-50 bg-base-200">
-            <div class="flex items-center space-x-1">             
+            <div class="flex items-center space-x-1">         
               <AppButton
                 @click="removeArticleDetail(article_detail.id)"                    
                 class="btn btn-danger btn-xs"                    
