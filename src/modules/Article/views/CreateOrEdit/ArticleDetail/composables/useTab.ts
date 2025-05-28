@@ -6,10 +6,10 @@ import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetai
 
 export default (articleId: string) => {  
   const articleDescription:Ref<string> = inject('article-description');
-  const { photoPaths, updatePhotoPaths }: {
-    photoPaths: Ref<string>
-    updatePhotoPaths: (arra: Ref<ArticleDetail[]> )=> void
-  } = inject('photo-paths');
+  const { imagePaths, addAllImagePaths }: {
+    imagePaths: Ref<string>
+    addAllImagePaths: (arra: Ref<ArticleDetail[]> )=> void
+  } = inject('image-paths');
 
   const article_details: Ref<ArticleDetail[]>  = ref([])
   const panelOpened = ref(false)
@@ -40,7 +40,7 @@ export default (articleId: string) => {
       .then(res => {
         article_details.value = res.data['article_details'];
         articleDescription.value = res.data['article_description'];
-        updatePhotoPaths(article_details)
+        //addAllImagePaths(article_details)
       })
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 

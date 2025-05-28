@@ -4,18 +4,31 @@ import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetai
 
 export default () => {
   const articleDescription: Ref<string> = ref('');
-  const photoPaths: Ref<string[]> = ref([]);
+  const imagePaths: Ref<string[]> = ref([]);
 
-  const updatePhotoPaths = (articleDetails: Ref<ArticleDetail[]>) => 
-    photoPaths.value = articleDetails.value.map(
+  const addImagePath = (articleDetail: string) => {
+    if (imagePaths.value.includes(articleDetail)) {
+      alert('Disculpe, esta imagen ya existe.')
+      return;
+    }
+
+    imagePaths.value.push(articleDetail)
+  }
+  
+  const addAllImagePaths = (articleDetails: Ref<ArticleDetail[]>) => {
+    imagePaths.value = articleDetails.value.map(
       (articleDetail: ArticleDetail) => articleDetail.photo_path
-    );  
+    ); 
+  } 
 
   return {
     articleDescription,
-    photoPaths,
+    imagePaths,
 
-    updatePhotoPaths   
+    addImagePath,
+    addAllImagePaths   
   }
 
 }
+
+

@@ -10,13 +10,19 @@ const router = useRouter();
 
 const {
     articleDescription,
-    photoPaths,
+    imagePaths,
 
-    updatePhotoPaths   
+    addImagePath,
+    addAllImagePaths   
   } = useIndex()
 
 provide('article-description', articleDescription);
-provide('photo-paths', { photoPaths, updatePhotoPaths });
+provide('image-paths', {
+  imagePaths,
+  
+  addImagePath,
+  addAllImagePaths
+ });
 </script>
 
 <template>

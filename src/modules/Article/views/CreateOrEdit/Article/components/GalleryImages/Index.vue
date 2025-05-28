@@ -5,7 +5,7 @@ import ModalShowPreview from './ModalShowPreview.vue';
 const startOfImagePath: string = import.meta.env.VITE_PRODUCT_API_URL
 
 const props = defineProps<{
-  photoPaths: string[]
+  imagePaths: string[]
 }>()
 
 const selectImage = ref('')
@@ -23,11 +23,15 @@ const closePreview = () => {
 }
 
 watch(
-  ()=> props.photoPaths[0],
+  ()=> props.imagePaths[0],
   newValue => { showPreview(newValue) },
   { once: true }
 )
 
+const classImages = (index: number) =>
+  props.imagePaths[index] === selectImage.value
+    ? 'image-selected'
+    : 'image-unselected'
 </script>
 
 <template>
@@ -40,8 +44,8 @@ watch(
     <div class="image-container">
       <!--a class="prev" onclick="plusSlides(-1)">&#10094;</a-->
       <div
-        :class="props.photoPaths[index] === selectImage ? 'image-selected' : 'image-unselected'"
-        v-for="(image, index)  in props.photoPaths"
+        :class="classImages(index)"
+        v-for="(image, index)  in props.imagePaths"
         :key="index"
       >
         <img          

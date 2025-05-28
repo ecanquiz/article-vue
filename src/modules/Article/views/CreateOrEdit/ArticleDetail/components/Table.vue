@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { inject, toRef } from 'vue'
 import IconCamera from "@/core/components/icons/IconCamera.vue"
+import type { Ref } from 'vue'
 import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 const props = defineProps<{ article_details: ArticleDetail[] }>()
@@ -13,17 +15,27 @@ const removeArticleDetail =  (articleDetailId: string) => {
   emits("removeArticleDetail", articleDetailId)
 };
 
+const { addImagePath, addAllImagePaths }: {
+    imagePaths: Ref<string>,
+    addImagePath: (imagePath: string)=> void,
+    addAllImagePaths: (arra: Ref<ArticleDetail[]>)=> void
+  } = inject('image-paths');
+
 const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
 
 const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${article_detail.photo_path}`
 
 const addImg = (photoPath: string) => {
-  alert(photoPath)
+  // alert(photoPath)
+  addImagePath(photoPath)
 }
 
 const addImgs = () => {
-  alert(props.article_details.map(articleDetail => articleDetail.photo_path))
+  // alert(props.article_details.map(articleDetail => articleDetail.photo_path))
+  addAllImagePaths(toRef(props.article_details))
 }
+
+
 
 </script>
 
@@ -42,13 +54,13 @@ const addImgs = () => {
           <th class="px-6 py-3 ">
             
             <div class="flex">
-              <p class="mt-1">Imagen</p>
-              <AppButton
+              <span class="mt-1 cursor-pointer" @click="addImgs()">Imagen</span>
+              <!--AppButton
                 @click="addImgs()"
                 class="btn btn-xs ml-1 text-blue-500 hover:text-blue-700"
               >
                 Adds
-              </AppButton>
+              </AppButton-->
             </div>
 
           </th>
@@ -74,15 +86,16 @@ const addImgs = () => {
           <td class="px-6 py-3">
             <div class="flex" v-if="article_detail.photo_path">
                <img              
-                 class="m-auto w-10"
+                 class="m-auto w-10 cursor-pointer"
                 :src=imgPath(article_detail)
+                @click="addImg(article_detail.photo_path)"
               />
-              <AppButton
+              <!--AppButton
                 @click="addImg(article_detail.photo_path)"
                 class="btn btn-xs ml-1 text-blue-500 hover:text-blue-700"              
               >
                 Add
-              </AppButton>
+              </AppButton-->
             </div>          
             
             <IconCamera

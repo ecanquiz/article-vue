@@ -6,7 +6,7 @@ import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
 
 const articleDescription:Ref<string> = inject('article-description');
-const { photoPaths }: { photoPaths: Ref<string[]> } = inject('photo-paths');
+const { imagePaths }: { imagePaths: Ref<string[]> } = inject('image-paths');
 
 const props = defineProps<{
   article: Article
@@ -67,7 +67,7 @@ const submit = async () => {
           <GalleryImages
             v-if="form && form.photos"
             :images="form.photos"
-            :photoPaths="photoPaths"
+            :imagePaths="imagePaths"
           />
         </div>
         <div class="block">
