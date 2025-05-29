@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { inject } from "vue";
+import { ref, inject } from "vue";
+import IconCamera from "@/core/components/icons/IconCamera.vue"
 import GalleryImages from "./GalleryImages/Index.vue";
+import ModalImage from './ModalImage/Index.vue'
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
@@ -33,6 +35,37 @@ const submit = async () => {
     emits("submit", form);
   }
 };
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+const imageUpload = (id: string) => {
+//  presentationId.value=id.toString()
+  isOpenModal.value = true
+}
+const isOpenModal = ref(false)
+const presentationId = ref("")
+
+const acceptModal= (f) => {  
+  uploadFile(f)
+}
+
+const uploadFile = (file) => {
+  /*const formData = new FormData();
+  formData.append("file", file.files.image);
+
+  PresentationService.uploadFilePresentation(formData, presentationId.value)
+  .then((response) => {
+    alert(response.data.message)
+    emits("getPresentations")        
+  })
+  .catch((error) => console.log(error));
+  */
+}
+
+
+
 </script>
 
 <template>
@@ -56,16 +89,23 @@ const submit = async () => {
             :error="v$.name.$error ? v$.name.$errors[0].$message : null"
           />
         </div>        
-        <div class="block">     
+        <div class="block box-content size-100 border-4 p-4">     
           <!--AppInput           
             v-model="form.photo"
             label="photo"
             type="hidden"
             :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
           /-->
-          <label class="block">Imágenes</label>
+          <div class="flex">
+            <label>Imágenes</label>
+            <IconCamera            
+              class="ml-2 w-7 h-7 fill-current hover:cursor-pointer"
+              @click="imageUpload()"
+            />
+          </div>
+
+          <!--v-if="form && form.photos"-->
           <GalleryImages
-            v-if="form && form.photos"
             :images="form.photos"
             :imagePaths="imagePaths"
           />
@@ -93,6 +133,12 @@ const submit = async () => {
         />
       </div>
   </form>
+      <ModalImage
+      v-if="isOpenModal"
+      :presentationId="presentationId"
+      @closeModal="isOpenModal = false"
+      @acceptModal="acceptModal"
+    />
 </div>
 </template>
 

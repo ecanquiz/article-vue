@@ -25,7 +25,7 @@ const closePreview = () => {
 watch(
   ()=> props.imagePaths[0],
   newValue => { showPreview(newValue) },
-  { once: true }
+  // { once: true }
 )
 
 const classImages = (index: number) =>
