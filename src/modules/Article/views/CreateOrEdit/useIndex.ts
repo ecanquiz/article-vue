@@ -12,7 +12,7 @@ export default () => {
       return;
     }
 
-    imagePaths.value.push(articleDetail)
+    imagePaths.value.unshift(articleDetail)
   }
   
   const addAllImagePaths = (articleDetails: Ref<ArticleDetail[]>) => {
