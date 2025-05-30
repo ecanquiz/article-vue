@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router'
 import useIndex from './useIndex'
 import ArticleTab from './Article/components/Tab.vue'
 import ArticleDetailTab from './ArticleDetail/components/Tab.vue'
+import TestComponent from './TestComponent.vue'
+
 
 const props = defineProps<{ id?: string }>()
 const router = useRouter();
@@ -40,6 +42,7 @@ provide('image-paths', {
   <div class="myPanel">
     <ArticleTab :id="props.id"/>
     <ArticleDetailTab :id="props.id"/>
+    <TestComponent />
   </div>
 </div>
 </template>
