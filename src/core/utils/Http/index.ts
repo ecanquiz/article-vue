@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { AxiosInstance, AxiosResponse, AxiosError } from "axios";
+import type { AxiosInstance, AxiosResponse, AxiosError, ResponseType } from "axios";
 import type { Paiload } from "@/core/utils/Types"
 import type { Init } from "./Http";
 import init from "./init";
@@ -31,11 +31,11 @@ export class Http {
   
   defaultHandleError(error: AxiosError) { return Promise.reject(error); }
 
-  get(path: string) {
+  get(path: string, responseType: ResponseType = "json") {
     return this.service.request({
       method: "GET",
       url: path,
-      responseType: "json"
+      responseType
     });
   }
 
