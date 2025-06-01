@@ -86,7 +86,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    {{ base64Images }}
+  <div class="">
+    
+    <div class="image-container">
+      <!--a class="prev" onclick="plusSlides(-1)">&#10094;</a-->
+      <div
+        v-for="(image, index)  in base64Images"
+        :key="index"
+      >
+        <img          
+          :src="image"
+          alt="Image" 
+        />
+      </div>
+      <!--a class="next" onclick="plusSlides(1)">&#10095;</a-->
+    </div>
   </div>
 </template>
