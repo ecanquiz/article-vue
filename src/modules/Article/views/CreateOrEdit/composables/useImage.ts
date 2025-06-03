@@ -3,7 +3,6 @@ import type { Ref } from "vue";
 import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
 export default () => {
-  const articleDescription: Ref<string> = ref('');
   const imagePaths: Ref<string[]> = ref([]);
 
   const addImagePath = (articleDetail: string) => {
@@ -22,7 +21,6 @@ export default () => {
   } 
 
   return {
-    articleDescription,
     imagePaths,
 
     addImagePath,

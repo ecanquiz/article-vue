@@ -1,22 +1,23 @@
 <script lang="ts" setup>
 import { provide } from 'vue'
 import { useRouter } from 'vue-router'
-import useIndex from './useIndex'
+import useDescription from './composables/useDescription'
+import useImage from './composables/useImage'
 import ArticleTab from './Article/components/Tab.vue'
 import ArticleDetailTab from './ArticleDetail/components/Tab.vue'
 import TestComponent from './TestComponent.vue'
 
-
 const props = defineProps<{ id?: string }>()
 const router = useRouter();
 
+const { articleDescription } = useDescription();
+
 const {
-    articleDescription,
     imagePaths,
 
     addImagePath,
     addAllImagePaths   
-  } = useIndex()
+  } = useImage()
 
 provide('article-description', articleDescription);
 provide('image-paths', {
