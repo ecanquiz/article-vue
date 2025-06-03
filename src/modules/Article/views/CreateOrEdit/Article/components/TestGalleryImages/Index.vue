@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
-import ModalShowPreview from './ModalShowPreview.vue';
+import TestModalShowPreview from './TestModalShowPreview.vue';
 
-const startOfImagePath: string = import.meta.env.VITE_PRODUCT_API_URL
+type ImageType = 'png' | 'jpeg'
+type Base64<imageType extends ImageType> = `data:image/${imageType};base64${string}`
 
 const props = defineProps<{
   imagePaths: string[]
+  base64Images: Base64<ImageType>[]
 }>()
 
 const selectImage = ref('')
 
 const previewImage = ref('')
 
-const showPreview = (image: string) => {
+const showPreview = (image: Base64<ImageType>) => {
   selectImage.value = image;
-  previewImage.value = `${startOfImagePath}/${image}`;
+  previewImage.value = image;
 }
 
 const closePreview = () => {
@@ -23,38 +25,36 @@ const closePreview = () => {
 }
 
 watch(
-  ()=> props.imagePaths[0],
+  ()=> props.base64Images[0],
   newValue => { showPreview(newValue) },
   // { once: true }
 )
 
 const classImages = (index: number) =>
-  props.imagePaths[index] === selectImage.value
+  props.base64Images[index] === selectImage.value
     ? 'image-selected'
     : 'image-unselected'
 </script>
 
 <template>
   <div class="">
-    <ModalShowPreview
+    <TestModalShowPreview
       v-if="previewImage"
       :previewImage="previewImage"
       @closePreview="closePreview"
     />
     <div class="image-container">
-      <!--a class="prev" onclick="plusSlides(-1)">&#10094;</a-->
       <div
         :class="classImages(index)"
-        v-for="(image, index)  in props.imagePaths"
+        v-for="(image, index)  in base64Images"
         :key="index"
       >
         <img          
-          :src="`${startOfImagePath}/${image}`"
+          :src="image"
           alt="Image" 
           @click="showPreview(image)"
-        />
+        />        
       </div>
-      <!--a class="next" onclick="plusSlides(1)">&#10095;</a-->
     </div>
   </div>
 </template>
