@@ -10,7 +10,13 @@ import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
 
 const articleDescription:Ref<string> = inject('article-description');
-const { imagePaths }: { imagePaths: Ref<string[]> } = inject('image-paths');
+
+
+type ImageType = 'png' | 'jpeg'
+type Base64<imageType extends ImageType> = `data:image/${imageType};base64${string}`
+
+
+const { imagePaths, base64Images }: { imagePaths: Ref<string[]>, base64Images: Base64<ImageType>[] } = inject('image-paths');
 
 const props = defineProps<{
   article: Article
@@ -115,6 +121,7 @@ const uploadFile = (file) => {
           <TestGalleryImages
             :images="form.photos"
             :imagePaths="imagePaths"
+            :base64Images="base64Images"
           />
         </div>
         <div class="block">

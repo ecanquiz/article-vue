@@ -14,6 +14,7 @@ const { articleDescription } = useDescription();
 
 const {
     imagePaths,
+    base64Images,
 
     addImagePath,
     addAllImagePaths   
@@ -22,6 +23,7 @@ const {
 provide('article-description', articleDescription);
 provide('image-paths', {
   imagePaths,
+  base64Images,
   
   addImagePath,
   addAllImagePaths
@@ -43,7 +45,7 @@ provide('image-paths', {
   <div class="myPanel">
     <ArticleTab :id="props.id"/>
     <ArticleDetailTab :id="props.id"/>
-    <TestComponent />
+    <!--TestComponent /-->
   </div>
 </div>
 </template>
