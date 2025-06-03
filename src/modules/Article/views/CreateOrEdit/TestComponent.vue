@@ -5,11 +5,21 @@ import { productInit } from "@/core/utils/Http/init";
 
 const Http = new h( productInit );
 
-const imageUrls = [
+/*const imageUrls = [
   'Product/presentations/presentation-24/IywlRxqLKV6bMyV6tfUcuRpMJMIOa63cJU2QTgju.jpg',
   'Product/presentations/presentation-21/rgNKwkC4KnrJSABhaQkFqKH6rtvNFFD41Nk1uuyB.jpg',
   'Product/presentations/presentation-17/8P0bS3dks73SS8W8uId0HtNUzsUcDBn7iyrkO8mn.jpg'
+];*/
+
+
+const imageUrls = [
+  'Product/presentations/presentation-21/gtTOh22wwD7I50a3vMX4BGZrBTcXxR07Rd6qIuFQ.jpg',
+  'Product/presentations/presentation-22/TrdEegJBKyPFEV7doyqau02nhmnlM4u4xm9oqmdK.jpg',
+  'Product/presentations/presentation-23/W306bLR2mF8ObbEwfUbxXkNWsSq2LjFZNAqOBKLP.jpg',
+  'Product/presentations/presentation-24/efgjkBq5qTdTT12LNPnQoPofplsJngifa2rn6Ycq.jpg'  
 ];
+
+
 
 const base64Images = ref([]);
 

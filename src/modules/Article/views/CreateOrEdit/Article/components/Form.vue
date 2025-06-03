@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
 import IconCamera from "@/core/components/icons/IconCamera.vue"
-import GalleryImages from "./GalleryImages/Index.vue";
+//import GalleryImages from "./GalleryImages/Index.vue";
+import TestGalleryImages from "./TestGalleryImages/Index.vue";
+
 import ModalImage from './ModalImage/Index.vue'
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
@@ -100,12 +102,17 @@ const uploadFile = (file) => {
             <label>Imágenes</label>
             <IconCamera            
               class="ml-2 w-7 h-7 fill-current hover:cursor-pointer"
-              @click="imageUpload()"
+              @click="imageUpload('1')"
             />
           </div>
 
           <!--v-if="form && form.photos"-->
-          <GalleryImages
+          <!--GalleryImages
+            :images="form.photos"
+            :imagePaths="imagePaths"
+          /-->
+
+          <TestGalleryImages
             :images="form.photos"
             :imagePaths="imagePaths"
           />
