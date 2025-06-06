@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue';
 import TestModalShowPreview from './TestModalShowPreview.vue';
-
-type ImageType = 'png' | 'jpeg'
-type Base64<imageType extends ImageType> = `data:image/${imageType};base64${string}`
+import type { ImageType, Base64 } from "@/modules/Article/types/Image";
 
 const props = defineProps<{
   imagePaths: string[]
