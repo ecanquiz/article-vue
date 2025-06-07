@@ -51,14 +51,26 @@ export default () => {
       (articleDetail: ArticleDetail) => articleDetail.photo_path
     );
     await convertImages();
-  } 
+  }
+  
+  const removeImagePath = (index: number): void => {
+    if (confirm('¿Desea eliminar esta imagen?'))
+      base64Images.value.splice(index, 1);
+  }
+
+  const removeAllImagePaths = (): void => {
+    if (confirm('¿Desea eliminar todas las imágenes?'))  
+      base64Images.value = [];
+  }
 
   return {
     imagePaths,
     base64Images,
 
     addImagePath,
-    addAllImagePaths   
+    addAllImagePaths,
+    removeImagePath,
+    removeAllImagePaths
   }
 
 }
