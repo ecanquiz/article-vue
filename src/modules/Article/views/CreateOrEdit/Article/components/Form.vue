@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, inject } from "vue";
 import IconCamera from "@/core/components/icons/IconCamera.vue"
-//import GalleryImages from "./GalleryImages/Index.vue";
-import TestGalleryImages from "./TestGalleryImages/Index.vue";
-
+import GalleryImages from "./GalleryImages/Index.vue";
 import ModalImage from './ModalImage/Index.vue'
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
@@ -106,12 +104,8 @@ const uploadFile = (file) => {
           </div>
 
           <!--v-if="form && form.photos"-->
-          <!--GalleryImages
-            :images="form.photos"
-            :imagePaths="imagePaths"
-          /-->
 
-          <TestGalleryImages
+          <GalleryImages
             :images="form.photos"
             :imagePaths="imagePaths"
             :base64Images="base64Images"
@@ -140,12 +134,12 @@ const uploadFile = (file) => {
         />
       </div>
   </form>
-      <ModalImage
-      v-if="isOpenModal"
-      :presentationId="presentationId"
-      @closeModal="isOpenModal = false"
-      @acceptModal="acceptModal"
-    />
+  <ModalImage
+    v-if="isOpenModal"
+    :presentationId="presentationId"
+    @closeModal="isOpenModal = false"
+    @acceptModal="acceptModal"
+  />
 </div>
 </template>
 

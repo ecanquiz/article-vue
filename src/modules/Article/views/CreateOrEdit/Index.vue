@@ -16,7 +16,9 @@ const {
     base64Images,
 
     addImagePath,
-    addAllImagePaths   
+    addAllImagePaths,
+    removeImagePath,
+    removeAllImagePaths   
   } = useImage()
 
 provide('article-description', articleDescription);
@@ -25,7 +27,9 @@ provide('image-paths', {
   base64Images,
   
   addImagePath,
-  addAllImagePaths
+  addAllImagePaths,
+  removeImagePath,
+  removeAllImagePaths
  });
 </script>
 
