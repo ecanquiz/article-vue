@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, inject } from "vue";
 import IconUploadFile from "./Icons/UploadFile.vue"
+import type { ImageType,  Base64} from "@/modules/Article/types/Image";
 
 const props = defineProps<{ presentationId: string }>()
+
+const {
+  base64Images,
+  addImagePath,
+}: {
+  base64Images: Base64<ImageType>[],
+  addImagePath: (articleDetail: string) => void,
+} = inject('image-paths');
 
 const image = ref({
   preview: null,
@@ -20,14 +29,16 @@ const closeModal = () => {
 }
 
 const submit = () => {
-  //const accept = async () => {
-  //const result = await v$.value.$validate();  
-  //if (result) {  
+
+  //console.log(image.value)
+
   if (true) {
-    emits('acceptModal', {
-      presentationId: props.presentationId,
-      files: image.value
-    })
+    //emits('acceptModal', {
+    //  presentationId: props.presentationId,
+    //  files: image.value
+    //})
+    //base64Images.value.push(image.value.preview as any as Base64<ImageType>)
+    addImagePath(image.value.preview as any as Base64<ImageType>) 
     closeModal()    
   }
 }
