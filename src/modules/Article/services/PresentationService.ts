@@ -28,11 +28,16 @@ export const getPresentationSearch = (query: string) => {
   return Http.get(`/api/presentation-search?${query}`);
 }
 
+export const getPublicFile = (filePath: string) => {
+  return Http.get(`api/public-file/${filePath}`, "blob");
+}
+
 export default {
   getPresentations,
   insertPresentation,
   updatePresentation,
   deletePresentation,
   uploadFilePresentation,
-  getPresentationSearch
+  getPresentationSearch,
+  getPublicFile
 }

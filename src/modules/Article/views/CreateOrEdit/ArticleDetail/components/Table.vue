@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, toRef } from 'vue'
+import { inject, toRaw } from 'vue'
 import IconCamera from "@/core/components/icons/IconCamera.vue"
 import type { Ref } from 'vue'
 import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
@@ -18,7 +18,7 @@ const removeArticleDetail =  (articleDetailId: string) => {
 const { addImagePath, addAllImagePaths }: {
     imagePaths: Ref<string>,
     addImagePath: (imagePath: string)=> void,
-    addAllImagePaths: (arra: Ref<ArticleDetail[]>)=> void
+    addAllImagePaths: (arra: ArticleDetail[])=> void
   } = inject('image-paths');
 
 const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
@@ -32,10 +32,8 @@ const addImg = (photoPath: string) => {
 
 const addImgs = () => {
   // alert(props.article_details.map(articleDetail => articleDetail.photo_path))
-  addAllImagePaths(toRef(props.article_details))
+  addAllImagePaths(toRaw(props.article_details))
 }
-
-
 
 </script>
 

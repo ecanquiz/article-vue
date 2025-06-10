@@ -28,9 +28,9 @@ export const isValidBase64 = function(str: string) {
   }
 }
 
-export const validateBase64DataURL = function(dataURL: string) {
+export const validateBase64 = function(data: string) {
   const base64Regex = /^data:image\/[a-zA-Z]+;base64,(.+)$/;
-  const match = dataURL.match(base64Regex);
+  const match = data.match(base64Regex);
   if (match) {
     const base64String = match[1];
     return isBase64(base64String) && isValidBase64(base64String);
