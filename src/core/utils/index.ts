@@ -1,5 +1,5 @@
 export {
     isBase64,
     isValidBase64,
-    validateBase64DataURL
+    validateBase64
 } from "./base64"

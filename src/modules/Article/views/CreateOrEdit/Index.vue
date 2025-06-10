@@ -2,7 +2,7 @@
 import { provide } from 'vue'
 import { useRouter } from 'vue-router'
 import useDescription from './composables/useDescription'
-import useImage from './composables/useImage'
+import useImage from './composables/useImage/index'
 import ArticleTab from './Article/components/Tab.vue'
 import ArticleDetailTab from './ArticleDetail/components/Tab.vue'
 
