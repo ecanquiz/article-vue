@@ -60,7 +60,7 @@ const classImages = (index: number) =>
           :src="image"
           alt="Image" 
           @click="showPreview(image)"
-          @dblclick="removeImagePath(index)"
+          @dblclick="removeImagePath(index);showPreview(base64Images[0])"
         />
       </div>
     </div>
