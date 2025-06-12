@@ -1,34 +1,34 @@
 import { validateBase64 } from "@/core/utils"
 import useImageToBase64 from "./useImageToBase64"
 import type { Ref } from "vue";
-import type { ImageType,  Base64} from "@/modules/Article/types/Image";
+import type { Images, ImageType,  Base64} from "@/modules/Article/types/Image";
 import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
 
-export default (base64Images: Ref<Base64<ImageType>[]>, imagePaths: Ref<string[]>) => {
+export default (images: Ref<Images>) => {
   const {
     convertImage,
     convertImages
-  } = useImageToBase64(base64Images, imagePaths);
+  } = useImageToBase64(images);
 
   const addImagePath = (imageOrInfoOf: string | Base64<ImageType>) => {
     if (
-      base64Images.value.includes(imageOrInfoOf as Base64<ImageType>)
-      || imagePaths.value.includes(imageOrInfoOf)
+      images.value.base64.includes(imageOrInfoOf as Base64<ImageType>)
+      || images.value.path.includes(imageOrInfoOf)
     ) {
       alert('Disculpe, esta imagen ya existe.')
       return;
     }
 
     if (validateBase64(imageOrInfoOf)) {
-      base64Images.value.unshift(imageOrInfoOf as Base64<ImageType> )
+      images.value.base64.unshift(imageOrInfoOf as Base64<ImageType> )
     } else {
       convertImage(imageOrInfoOf.replace('storage/',''))
-      imagePaths.value.unshift(imageOrInfoOf);
+      images.value.path.unshift(imageOrInfoOf);
     }
   }
   
   const addAllImagePaths = async (articleDetails: ArticleDetail[]) => {
-    imagePaths.value = articleDetails.map(
+    images.value.path = articleDetails.map(
       (articleDetail: ArticleDetail) => articleDetail.photo_path
     );
     await convertImages();
@@ -36,14 +36,14 @@ export default (base64Images: Ref<Base64<ImageType>[]>, imagePaths: Ref<string[]
   
   const removeImagePath = (index: number): void => {
     if (confirm('¿Desea eliminar esta imagen?')) {
-      base64Images.value.splice(index, 1);
+      images.value.base64.splice(index, 1);
     }
   }
 
   const removeAllImagePaths = (): void => {
     if (confirm('¿Desea eliminar todas las imágenes?')) {
-      base64Images.value = [];
-      imagePaths.value = [];
+      images.value.base64 = [];
+      images.value.path = [];
     }
   }    
 

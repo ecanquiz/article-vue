@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref, watch, inject } from 'vue';
 import ModalShowPreview from './ModalShowPreview.vue';
-import type { ImageType, Base64 } from "@/modules/Article/types/Image";
+import type { Images, ImageType, Base64 } from "@/modules/Article/types/Image";
 import AppButton from '@/core/components/AppButton.vue';
 
 const props = defineProps<{
-  imagePaths: string[]
-  base64Images: Base64<ImageType>[]
+  images: Images
 }>()
 
 const {
@@ -32,19 +31,19 @@ const closePreview = () => {
 }
 
 watch(
-  ()=> props.base64Images[0],
+  ()=> props.images.base64[0],
   newValue => { showPreview(newValue) },
   // { once: true }
 )
 
 const classImages = (index: number) =>
-  props.base64Images[index] === selectImage.value
+  props.images.base64[index] === selectImage.value
     ? 'image-selected'
     : 'image-unselected'
 
 const removeImage = (index: number) => {
   removeImagePath(index);
-  showPreview(props.base64Images[0]);
+  showPreview(props.images.base64[0]);
 }
 </script>
 
@@ -58,7 +57,7 @@ const removeImage = (index: number) => {
     <div class="image-container">
       <div
         :class="classImages(index)"
-        v-for="(image, index)  in base64Images"
+        v-for="(image, index)  in props.images.base64"
         :key="index"
       >
         <img          
@@ -70,7 +69,7 @@ const removeImage = (index: number) => {
       </div>
     </div>
     <AppButton
-      v-if="base64Images.length"
+      v-if="props.images.base64.length"
       type="button"
       text="Eliminar todas"
       class="btn btn-danger"

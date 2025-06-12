@@ -1,8 +1,8 @@
 import PresentationService from "@/modules/Article/services/PresentationService"
 import type { Ref } from "vue";
-import type { ImageType,  Base64} from "@/modules/Article/types/Image";
+import type { Images, ImageType,  Base64} from "@/modules/Article/types/Image";
 
-export default (base64Images: Ref<Base64<ImageType>[]>, imagePaths: Ref<string[]>) => {
+export default (images: Ref<Images>) => {
   async function convertImageToBase64(imagePath: string) {
     const response = await PresentationService.getPublicFile(imagePath);
     const blob = await response.data;
@@ -18,13 +18,13 @@ export default (base64Images: Ref<Base64<ImageType>[]>, imagePaths: Ref<string[]
   }
 
   const convertImages = async function() {
-    const promises = imagePaths.value.map(imagePath => convertImageToBase64(imagePath.replace('storage/', '')));
-    base64Images.value = await Promise.all(promises) as Base64<ImageType>[];
+    const promises = images.value.path.map(imagePath => convertImageToBase64(imagePath.replace('storage/', '')));
+    images.value.base64 = await Promise.all(promises) as Base64<ImageType>[];
   }
 
   const convertImage = async function(imagePath: string) {
     const promise = await convertImageToBase64(imagePath.replace('storage/', ''));
-    base64Images.value.unshift(promise as unknown as Base64<ImageType>)
+    images.value.base64.unshift(promise as unknown as Base64<ImageType>)
   }  
 
   return {
