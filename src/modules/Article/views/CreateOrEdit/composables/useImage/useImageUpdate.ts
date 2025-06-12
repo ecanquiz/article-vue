@@ -35,13 +35,16 @@ export default (base64Images: Ref<Base64<ImageType>[]>, imagePaths: Ref<string[]
   }
   
   const removeImagePath = (index: number): void => {
-    if (confirm('¿Desea eliminar esta imagen?'))
+    if (confirm('¿Desea eliminar esta imagen?')) {
       base64Images.value.splice(index, 1);
+    }
   }
 
   const removeAllImagePaths = (): void => {
-    if (confirm('¿Desea eliminar todas las imágenes?'))  
+    if (confirm('¿Desea eliminar todas las imágenes?')) {
       base64Images.value = [];
+      imagePaths.value = [];
+    }
   }    
 
   return {
