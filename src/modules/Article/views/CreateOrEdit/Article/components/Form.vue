@@ -6,11 +6,11 @@ import ModalImage from './ModalImage/Index.vue'
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
-import type { ImageType, Base64 } from "@/modules/Article/types/Image";
+import type { Images, ImageType, Base64 } from "@/modules/Article/types/Image";
 
 const articleDescription:Ref<string> = inject('article-description');
 
-const { imagePaths, base64Images }: { imagePaths: Ref<string[]>, base64Images: Base64<ImageType>[] } = inject('image-paths');
+const { images }: { images: Ref<Images> } = inject('image-paths');
 
 const props = defineProps<{
   article: Article
@@ -106,9 +106,7 @@ const uploadFile = (file) => {
           <!--v-if="form && form.photos"-->
 
           <GalleryImages
-            :images="form.photos"
-            :imagePaths="imagePaths"
-            :base64Images="base64Images"
+            :images="images"
           />
         </div>
         <div class="block">

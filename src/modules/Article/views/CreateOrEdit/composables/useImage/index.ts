@@ -1,22 +1,23 @@
 import { ref } from 'vue'
 import useImageUpdate from "./useImageUpdate"
 import type { Ref } from "vue";
-import type { ImageType,  Base64} from "@/modules/Article/types/Image";
+import type { Images, ImageType,  Base64} from "@/modules/Article/types/Image";
 
 export default () => {
-  const base64Images = ref([] as Base64<ImageType>[]);
-  const imagePaths: Ref<string[]> = ref([]);
+  const images: Ref<Images> = ref({
+    base64: [],
+    path: []
+  }) 
 
   const { 
     addImagePath,
     addAllImagePaths,
     removeImagePath,
     removeAllImagePaths
-  } = useImageUpdate(base64Images, imagePaths);  
+  } = useImageUpdate(images);  
 
   return {
-    imagePaths,
-    base64Images,
+    images,
 
     addImagePath,
     addAllImagePaths,

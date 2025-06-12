@@ -12,8 +12,7 @@ const router = useRouter();
 const { articleDescription } = useDescription();
 
 const {
-    imagePaths,
-    base64Images,
+    images,
 
     addImagePath,
     addAllImagePaths,
@@ -23,8 +22,7 @@ const {
 
 provide('article-description', articleDescription);
 provide('image-paths', {
-  imagePaths,
-  base64Images,
+  images,
   
   addImagePath,
   addAllImagePaths,
