@@ -41,6 +41,11 @@ const classImages = (index: number) =>
   props.base64Images[index] === selectImage.value
     ? 'image-selected'
     : 'image-unselected'
+
+const removeImage = (index: number) => {
+  removeImagePath(index);
+  showPreview(props.base64Images[0]);
+}
 </script>
 
 <template>
@@ -60,7 +65,7 @@ const classImages = (index: number) =>
           :src="image"
           alt="Image" 
           @click="showPreview(image)"
-          @dblclick="removeImagePath(index);showPreview(base64Images[0])"
+          @dblclick="removeImage(index)"
         />
       </div>
     </div>
