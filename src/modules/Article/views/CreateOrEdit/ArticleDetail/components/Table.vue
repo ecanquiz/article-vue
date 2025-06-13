@@ -3,6 +3,7 @@ import { inject, toRaw } from 'vue'
 import IconCamera from "@/core/components/icons/IconCamera.vue"
 import type { Ref } from 'vue'
 import type { ArticleDetail } from "@/modules/Article/types/Article/ArticleDetail";
+import type { ImageType,  Base64} from "@/modules/Article/types/Image";
 
 const props = defineProps<{ article_details: ArticleDetail[] }>()
 
@@ -15,11 +16,11 @@ const removeArticleDetail =  (articleDetailId: string) => {
   emits("removeArticleDetail", articleDetailId)
 };
 
-const { addImagePath, addAllImagePaths }: {
-    imagePaths: Ref<string>,
-    addImagePath: (imagePath: string)=> void,
-    addAllImagePaths: (arra: ArticleDetail[])=> void
-  } = inject('image-paths');
+const { addImage, addImages }: {
+  imagePaths: Ref<string>,
+  addImage: (imageOrInfoOf: string | Base64<ImageType>)=> void,
+  addImages: (articleDetails: ArticleDetail[])=> void
+} = inject('image-paths');
 
 const status = (s: ArticleDetail["status"]) => s ? 'Activo' : 'Inactivo';
 
@@ -27,12 +28,12 @@ const imgPath = (article_detail) => `${import.meta.env.VITE_PRODUCT_API_URL}/${a
 
 const addImg = (photoPath: string) => {
   // alert(photoPath)
-  addImagePath(photoPath)
+  addImage(photoPath)
 }
 
 const addImgs = () => {
   // alert(props.article_details.map(articleDetail => articleDetail.photo_path))
-  addAllImagePaths(toRaw(props.article_details))
+  addImages(toRaw(props.article_details))
 }
 
 </script>

@@ -10,7 +10,7 @@ export default (images: Ref<Images>) => {
     convertImages
   } = useImageToBase64(images);
 
-  const addImagePath = (imageOrInfoOf: string | Base64<ImageType>) => {
+  const addImage = (imageOrInfoOf: string | Base64<ImageType>) => {
     if (
       images.value.base64.includes(imageOrInfoOf as Base64<ImageType>)
       || images.value.path.includes(imageOrInfoOf)
@@ -27,20 +27,20 @@ export default (images: Ref<Images>) => {
     }
   }
   
-  const addAllImagePaths = async (articleDetails: ArticleDetail[]) => {
+  const addImages = async (articleDetails: ArticleDetail[]) => {
     images.value.path = articleDetails.map(
       (articleDetail: ArticleDetail) => articleDetail.photo_path
     );
     await convertImages();
   }
   
-  const removeImagePath = (index: number): void => {
+  const removeImage = (index: number): void => {
     if (confirm('¿Desea eliminar esta imagen?')) {
       images.value.base64.splice(index, 1);
     }
   }
 
-  const removeAllImagePaths = (): void => {
+  const removeImages = (): void => {
     if (confirm('¿Desea eliminar todas las imágenes?')) {
       images.value.base64 = [];
       images.value.path = [];
@@ -48,9 +48,9 @@ export default (images: Ref<Images>) => {
   }    
 
   return {
-    addImagePath,
-    addAllImagePaths,
-    removeImagePath,
-    removeAllImagePaths
+    addImage,
+    addImages,
+    removeImage,
+    removeImages
   }
 }

@@ -12,22 +12,22 @@ const router = useRouter();
 const { articleDescription } = useDescription();
 
 const {
-    images,
+  images,
 
-    addImagePath,
-    addAllImagePaths,
-    removeImagePath,
-    removeAllImagePaths   
-  } = useImage()
+  addImage,
+  addImages,
+  removeImage,
+  removeImages  
+} = useImage()
 
 provide('article-description', articleDescription);
 provide('image-paths', {
   images,
   
-  addImagePath,
-  addAllImagePaths,
-  removeImagePath,
-  removeAllImagePaths
+  addImage,
+  addImages,
+  removeImage,
+  removeImages
  });
 </script>
 

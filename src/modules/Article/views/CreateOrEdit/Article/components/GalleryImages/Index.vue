@@ -9,11 +9,11 @@ const props = defineProps<{
 }>()
 
 const {
-  removeImagePath,
-  removeAllImagePaths
+  removeImage,
+  removeImages
 }: {
-  removeImagePath: (index: number) => void,
-  removeAllImagePaths: () => void
+  removeImage: (index: number) => void,
+  removeImages: () => void
 } = inject('image-paths');
 
 const selectImage = ref('')
@@ -41,8 +41,8 @@ const classImages = (index: number) =>
     ? 'image-selected'
     : 'image-unselected'
 
-const removeImage = (index: number) => {
-  removeImagePath(index);
+const deleteImage = (index: number) => {
+  removeImage(index);
   showPreview(props.images.base64[0]);
 }
 </script>
@@ -64,7 +64,7 @@ const removeImage = (index: number) => {
           :src="image"
           alt="Image" 
           @click="showPreview(image)"
-          @dblclick="removeImage(index)"
+          @dblclick="deleteImage(index)"
         />
       </div>
     </div>
@@ -73,7 +73,7 @@ const removeImage = (index: number) => {
       type="button"
       text="Eliminar todas"
       class="btn btn-danger"
-      @click="removeAllImagePaths()"
+      @click="removeImages()"
     />
   </div>
 </template>
