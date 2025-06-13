@@ -7,11 +7,11 @@ const props = defineProps<{ presentationId: string }>()
 
 const {
   base64Images,
-  addImagePath,
+  addImage,
 }: {
   base64Images: Base64<ImageType>[],
-  addImagePath: (articleDetail: string) => void,
-} = inject('image-paths');
+  addImage: (imageOrInfoOf: string | Base64<ImageType>) => void,
+} = inject('image-paths'); 
 
 const image = ref({
   preview: null,
@@ -38,7 +38,7 @@ const submit = () => {
     //  files: image.value
     //})
     //base64Images.value.push(image.value.preview as any as Base64<ImageType>)
-    addImagePath(image.value.preview as any as Base64<ImageType>) 
+    addImage(image.value.preview as any as Base64<ImageType>) 
     closeModal()    
   }
 }

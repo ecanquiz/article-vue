@@ -6,7 +6,7 @@ import ModalImage from './ModalImage/Index.vue'
 import useFormArticle from "../composables/useForm"
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article";
-import type { Images, ImageType, Base64 } from "@/modules/Article/types/Image";
+import type { Images } from "@/modules/Article/types/Image";
 
 const articleDescription:Ref<string> = inject('article-description');
 
