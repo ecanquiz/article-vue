@@ -15,7 +15,7 @@ export default (articleId?: string) => {
     name: "",
     description: "",     
     status: "", 
-    photos: [], 
+    images: [], 
     id_user_insert: "", 
     id_user_update: "", 
   })
@@ -36,7 +36,7 @@ export default (articleId?: string) => {
           article.name = response.data.data.name;
           articleDescription.value = response.data.data.description;
           article.status = response.data.data.status ? true : false;
-          article.photos = response.data.data.photos;
+          article.images = response.data.data.images;
           article.id_user_insert = response.data.data.id_user_insert;
           article.id_user_update = response.data.data.id_user_update;
         })

@@ -6,7 +6,7 @@ export type Article = {
   name?: string;
   description?: string;
   status?: any; 
-  photos?: string[]; 
+  images?: string[]; 
   id_user_insert?: any; 
   id_user_update?: any; 
   
@@ -41,7 +41,7 @@ export type ArticleRow = {
   name?: string;
   description?: string;
   status?: any; 
-  photo?: string; 
+  image?: string; 
   id_user_insert?: any; 
   id_user_update?: any; 
 }

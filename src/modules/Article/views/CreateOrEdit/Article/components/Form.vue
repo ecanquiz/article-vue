@@ -89,12 +89,11 @@ const uploadFile = (file) => {
           />
         </div>        
         <div class="block box-content size-100 border-4 p-4">     
-          <!--AppInput           
-            v-model="form.photo"
-            label="photo"
+          <AppInput           
+            v-model="form.images"
             type="hidden"
-            :error="v$.photo.$error ? v$.photo.$errors[0].$message : null"
-          /-->
+            :error="v$.images.$error ? v$.images.$errors[0].$message : null"
+          />
           <div class="flex">
             <label>Imágenes</label>
             <IconCamera            
@@ -103,7 +102,7 @@ const uploadFile = (file) => {
             />
           </div>
 
-          <!--v-if="form && form.photos"-->
+          <!--v-if="form && form.images"-->
 
           <GalleryImages
             :images="images"
@@ -119,7 +118,7 @@ const uploadFile = (file) => {
           <AppCheckbox
             v-model="form.status"
             label="status"
-            :error="v$.photos.$error ? v$.photos.$errors[0].$message : null"
+            :error="v$.status.$error ? v$.status.$errors[0].$message : null"
           />
         </div>        
       </div>
