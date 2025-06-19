@@ -11,7 +11,7 @@ export default (article: Article) => {
     int_cod    : article.int_cod    ? article.int_cod    : '', 
     name       : article.name       ? article.name       : '',    
     status     : article.status     ? article.status     : true, 
-    photos     : article.photos     ? article.photos      : []
+    images     : article.images     ? article.images      : []
   })
 
   const {
@@ -77,8 +77,8 @@ export default (article: Article) => {
       status: {
         required: helpers.withMessage("Campo requerido", required),
       },
-      photos: {
-        required: helpers.withMessage("Campo requerido", required),
+      images: {
+      //  required: helpers.withMessage("Campo requerido", required),
       },
     }
   })
