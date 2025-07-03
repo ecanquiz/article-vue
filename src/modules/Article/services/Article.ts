@@ -29,6 +29,10 @@ export const getHelpArticles = () => {
   return Http.get(`/api/articles-help`);
 }
 
+export const testStatic = (url: string) => {
+  return Http.get(url);
+} 
+
 export default {
   getArticles,
   getArticlesSearch,
@@ -36,5 +40,6 @@ export default {
   insertArticle,
   updateArticle,
   deleteArticle,
-  getHelpArticles
+  getHelpArticles,
+  testStatic
 }

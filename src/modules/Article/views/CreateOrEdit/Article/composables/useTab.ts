@@ -39,6 +39,7 @@ export default (articleId?: string) => {
           article.images = response.data.data.images;
           article.id_user_insert = response.data.data.id_user_insert;
           article.id_user_update = response.data.data.id_user_update;
+          testStatic();
         })
         .catch((err) => {        
           errors.value = getError(err);
@@ -48,6 +49,11 @@ export default (articleId?: string) => {
         })
     }    
   })
+
+  const testStatic = () => {
+    const response = ArticleService.testStatic(article.images[0]);
+    console.log(response);
+  }
 
   const insertArticle = async (article: Article) => {
     pending.value = true
