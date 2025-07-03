@@ -30,3 +30,13 @@ export const productInit: Init = {
     'Authorization': `Bearer ${import.meta.env.VITE_PRODUCT_API_SHARED_TOKEN}`
   }
 }
+
+export const staticInit: Init = {
+  baseURL: import.meta.env.VITE_STATIC_API_URL, //process.env.VITE_API_STATIC_URL,  
+  withCredentials: false,
+  withXSRFToken: false,
+  customHeaders: { 
+    //'Content-Type': 'application/json', 
+    //'Authorization': `Bearer ${import.meta.env.VITE_PRODUCT_API_SHARED_TOKEN}`
+  }
+}

@@ -1,5 +1,8 @@
-import Http from "@/core/utils/Http";
+import Http, { Http as h } from "@/core/utils/Http";
+import { productInit } from "@/core/utils/Http/init";
 import type { Article } from "../types/Article";
+
+const HttpTest = new h( productInit );
 
 export const getArticles = (query: string) => {  
   return Http.get(`/api/articles/?${query}`);
@@ -29,8 +32,8 @@ export const getHelpArticles = () => {
   return Http.get(`/api/articles-help`);
 }
 
-export const testStatic = (url: string) => {
-  return Http.get(url);
+export const getPublicFile = (url: string) => {
+  return HttpTest.get(url, "blob");
 } 
 
 export default {
@@ -41,5 +44,5 @@ export default {
   updateArticle,
   deleteArticle,
   getHelpArticles,
-  testStatic
+  getPublicFile
 }
