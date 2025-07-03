@@ -3,8 +3,8 @@ import { staticInit } from "@/core/utils/Http/init";
 
 const Http = new h( staticInit );
 
-export const getPublicFile = (urlPath: string) => {
-  return Http.get(urlPath, "blob");
+export const getPublicFile = (imageName: string) => {
+  return Http.get(`/api/public-file/${imageName}`, "blob");
 } 
 
 export default { getPublicFile }

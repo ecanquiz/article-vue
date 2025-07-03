@@ -28,8 +28,8 @@ export const getPresentationSearch = (query: string) => {
   return Http.get(`/api/presentation-search?${query}`);
 }
 
-export const getPublicFile = (filePath: string) => {
-  return Http.get(`api/public-file/${filePath}`, "blob");
+export const getPublicFile = (fileName: string) => {
+  return Http.get(`api/public-file/${fileName}`, "blob");
 }
 
 export default {
