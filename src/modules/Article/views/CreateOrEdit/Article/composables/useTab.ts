@@ -5,14 +5,18 @@ import ArticleService from "@/modules/Article/services/Article";
 import useTabConvertImages from "./useTabConvertImages"
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article"
-import type { ImageType, Base64} from "@/modules/Article/types/Image";
+import type { Images, ImageType, Base64} from "@/modules/Article/types/Image";
 
 export default (articleId?: string) => {
   const router = useRouter();
 
   const articleDescription:Ref<string, string> = inject('article-description');
 
-  const { addImage }: {
+  const {
+    images,
+    addImage
+  }: {
+    images: Ref<Images>,
     addImage: (imageOrInfoOf: string | Base64<ImageType>)=> void,
   } = inject('image-paths');
 
@@ -78,6 +82,8 @@ export default (articleId?: string) => {
 
   const updateArticle = async (article: Article, articleId: string) => {
     pending.value= true
+    console.log(article)
+    article.bases64 = images.value.base64
     article._method = 'PUT'
     return ArticleService.updateArticle(articleId, article)
       .then((response) => {
@@ -93,7 +99,7 @@ export default (articleId?: string) => {
       })
   }
   
-  const submit = (article: Article) => { 
+  const submit = (article: Article) => {    
     !articleId ? insertArticle(article) : updateArticle(article, articleId)
   }
 
