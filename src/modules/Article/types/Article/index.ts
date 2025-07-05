@@ -6,7 +6,8 @@ export type Article = {
   name?: string;
   description?: string;
   status?: any; 
-  images?: string[]; 
+  images?: string[];
+  bases64: string[];
   id_user_insert?: any; 
   id_user_update?: any; 
   
