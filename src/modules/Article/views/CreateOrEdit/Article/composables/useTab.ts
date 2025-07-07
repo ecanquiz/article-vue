@@ -80,10 +80,24 @@ export default (articleId?: string) => {
       })
   }
 
+  /**
+ * Compresión Base64 (sin pérdida de calidad)
+ * @param {string} base64 - Cadena Base64 con prefijo (ej: "data:image/png;base64,iVBOR...")
+ * @returns {string} Base64 comprimido (sin metadatos y URL-safe)
+ */
+function compressBase64(base64) {
+  return base64
+    .replace(/^data:\w+\/\w+;base64,/, '')  // Elimina el prefijo
+    .replace(/\+/g, '-')                   // URL-safe: '+' -> '-'
+    .replace(/\//g, '_')                   // URL-safe: '/' -> '_'
+    .replace(/=+$/, '');                   // Elimina padding '='
+}
+
   const updateArticle = async (article: Article, articleId: string) => {
-    pending.value= true
-    console.log(article)
-    article.bases64 = images.value.base64
+    pending.value= true   
+    
+    // article.bases64 = images.value.base64
+    article.bases64 = images.value.base64.map(img => compressBase64(img));
     article._method = 'PUT'
     return ArticleService.updateArticle(articleId, article)
       .then((response) => {
