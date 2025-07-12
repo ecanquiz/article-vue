@@ -25,7 +25,8 @@ export default (articleId?: string) => {
     name: "",
     description: "",     
     status: "", 
-    images: [], 
+    images: [],
+    bases64: [],
     id_user_insert: "", 
     id_user_update: "", 
   })
@@ -52,7 +53,7 @@ export default (articleId?: string) => {
           article.id_user_insert = response.data.data.id_user_insert;
           article.id_user_update = response.data.data.id_user_update;
 
-          const base64Images = await convertImages(article.images);
+          const base64Images = await convertImages(articleId, article.images);
           base64Images.forEach(base64Image => addImage(base64Image));          
         })
         .catch((err) => {        
