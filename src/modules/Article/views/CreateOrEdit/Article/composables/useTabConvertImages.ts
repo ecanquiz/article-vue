@@ -11,17 +11,17 @@ export default function () {
     });
   }
 
-  const convertImage = async (imageName: string) => {
-    const response = await AssetFile.getPublicFile(imageName);
+  const convertImage = async (articleId: string|number, imageName: string) => {
+    const response = await AssetFile.getPublicFile(articleId, imageName);
     const blob = await response.data;
     const base64 = await convertBlobToBase64(blob) as Base64<ImageType>;
 
     return base64;
   }
 
-  const convertImages = async (imageNameArray: string[]) => {
+  const convertImages = async (articleId: string|number, imageNameArray: string[]) => {
     const promises = imageNameArray.map(
-      (image: string) => convertImage(image)
+      (image: string) => convertImage(articleId, image)
     );
     return await Promise.all(promises);
   }

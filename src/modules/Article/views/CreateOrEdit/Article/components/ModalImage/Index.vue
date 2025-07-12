@@ -143,7 +143,7 @@ const drop = (event) => {
             type="submit"                               
             data-testid="submit-btn"
             class="btn btn-primary"
-            text="Guardar"
+            text="Agregar"
           />
            <AppButton
              type="button"
