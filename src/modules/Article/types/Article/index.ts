@@ -5,12 +5,9 @@ export type Article = {
   int_cod?: string; 
   name?: string;
   description?: string;
-  status?: any; 
-  images?: string[];
-  bases64: string[];
-  id_user_insert?: any; 
-  id_user_update?: any; 
-  
+  status?: boolean; 
+  imageNames?: string[];
+  bases64?: string[]; 
   _method?: 'PUT';
 }
 
@@ -42,9 +39,7 @@ export type ArticleRow = {
   name?: string;
   description?: string;
   status?: any; 
-  image?: string; 
-  id_user_insert?: any; 
-  id_user_update?: any; 
+  image?: string;
 }
 
 export type Link = {

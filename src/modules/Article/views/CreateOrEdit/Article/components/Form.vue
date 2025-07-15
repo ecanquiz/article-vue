@@ -90,9 +90,9 @@ const uploadFile = (file) => {
         </div>        
         <div class="block box-content size-100 border-4 p-4">     
           <AppInput           
-            v-model="form.images"
+            v-model="form.imageNames"
             type="hidden"
-            :error="v$.images.$error ? v$.images.$errors[0].$message : null"
+            :error="v$.imageNames.$error ? v$.imageNames.$errors[0].$message : null"
           />
           <div class="flex">
             <label>Imágenes</label>

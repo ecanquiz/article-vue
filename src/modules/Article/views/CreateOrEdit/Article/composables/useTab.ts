@@ -1,8 +1,9 @@
 import { onMounted, reactive, inject } from 'vue'
 import { useRouter } from 'vue-router'
-import useHttp from "@/core/composables/useHttp";
-import ArticleService from "@/modules/Article/services/Article";
+import useHttp from '@/core/composables/useHttp';
+import ArticleService from '@/modules/Article/services/Article';
 import useTabConvertImages from "./useTabConvertImages"
+import { compressBase64 } from '@/core/utils/base64'
 import type { Ref } from "vue";
 import type { Article } from "@/modules/Article/types/Article"
 import type { Images, ImageType, Base64} from "@/modules/Article/types/Image";
@@ -24,11 +25,9 @@ export default (articleId?: string) => {
     int_cod: "", 
     name: "",
     description: "",     
-    status: "", 
-    images: [],
-    bases64: [],
-    id_user_insert: "", 
-    id_user_update: "", 
+    status: false, 
+    imageNames: [],
+    bases64: []
   })
 
   const {  
@@ -49,11 +48,9 @@ export default (articleId?: string) => {
           article.name = response.data.data.name;
           articleDescription.value = response.data.data.description;
           article.status = response.data.data.status ? true : false;
-          article.images = response.data.data.images;
-          article.id_user_insert = response.data.data.id_user_insert;
-          article.id_user_update = response.data.data.id_user_update;
+          article.imageNames = response.data.data.image_names;
 
-          const base64Images = await convertImages(articleId, article.images);
+          const base64Images = await convertImages(articleId, article.imageNames);
           base64Images.forEach(base64Image => addImage(base64Image));          
         })
         .catch((err) => {        
@@ -81,29 +78,14 @@ export default (articleId?: string) => {
       })
   }
 
-  /**
- * Compresión Base64 (sin pérdida de calidad)
- * @param {string} base64 - Cadena Base64 con prefijo (ej: "data:image/png;base64,iVBOR...")
- * @returns {string} Base64 comprimido (sin metadatos y URL-safe)
- */
-function compressBase64(base64) {
-  return base64
-    .replace(/^data:\w+\/\w+;base64,/, '')  // Elimina el prefijo
-    .replace(/\+/g, '-')                   // URL-safe: '+' -> '-'
-    .replace(/\//g, '_')                   // URL-safe: '/' -> '_'
-    .replace(/=+$/, '');                   // Elimina padding '='
-}
-
   const updateArticle = async (article: Article, articleId: string) => {
     pending.value= true   
     
-    // article.bases64 = images.value.base64
     article.bases64 = images.value.base64.map(img => compressBase64(img));
     article._method = 'PUT'
     return ArticleService.updateArticle(articleId, article)
       .then((response) => {
         alert( response.data.message )
-        //router.push( { path: '/articles' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
