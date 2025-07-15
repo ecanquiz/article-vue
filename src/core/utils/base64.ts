@@ -37,3 +37,33 @@ export const validateBase64 = function(data: string) {
   }
   return false;
 }
+
+  /**
+ * Base64 compression (lossless of quality)
+ * @param {string} base64 - Base64 string with prefix (eg: "data:image/png;base64,iVBOR...")
+ * @returns {string} Base64 compressed (no metadata and URL-safe)
+ */
+export const compressBase64 = function(base64: string) {
+  return base64
+    .replace(/^data:\w+\/\w+;base64,/, '') // Remove the prefix
+    .replace(/\+/g, '-')                   // URL-safe: '+' -> '-'
+    .replace(/\//g, '_')                   // URL-safe: '/' -> '_'
+    .replace(/=+$/, '');                   // Remove padding '='
+}
+
+
+export const rebuildBase64 = function(compressed: string, mimeType = 'image/jpeg') {
+  // Revert URL-safe transformation
+  const base64 = compressed
+    .replace(/-/g, '+')
+    .replace(/_/g, '/');
+
+  // Add padding '=' if necessary (length multiple of 4)
+  const padLength = 4 - (base64.length % 4);
+  const paddedBase64 = base64 + '='.repeat(padLength % 4);
+
+  // Rebuild the complete Base64
+  const fullBase64 = `data:${mimeType};base64,${paddedBase64}`;
+
+  return fullBase64;
+}
